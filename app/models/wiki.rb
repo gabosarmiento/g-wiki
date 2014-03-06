@@ -1,3 +1,3 @@
 class Wiki < ActiveRecord::Base
-  attr_accessible :body, :description, :public, :title
+  attr_accessible :title, :description, :body
 end
