@@ -1,4 +1,10 @@
 GWiki::Application.routes.draw do
+  root to: 'welcome#index'
+
+  get "welcome/about"
+
+  get "welcome/support"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
