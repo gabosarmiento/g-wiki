@@ -16,9 +16,9 @@ class Ability
       can :destroy, Wiki
     end
 
-    # Clients can create private wikis
+    # Clients can read their own private wikis
     if user.role? :client
-        can :read, Wiki 
+        can :read, Wiki, :user_id => user.id, public: false
     end
     
     # Admins can do anything
@@ -26,6 +26,6 @@ class Ability
       can :manage, :all
     end
 
-    can :read, public: true 
+    can :read, Wiki, public: true 
   end
 end
