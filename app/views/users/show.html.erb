@@ -1,0 +1,7 @@
+<h2>Hello <%= (current_user.username || current_user.email) %></h2>
+<% if current_user.avatar? %>
+        <%= image_tag current_user.avatar.url, class: 'pull-right' %>
+      <% end %>
+<p> Member since <%= time_ago_in_words(current_user.created_at) %>  
+<p><%= link_to "Modify your user", edit_user_registration_path %></p>
+</p>

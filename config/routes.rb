@@ -3,9 +3,10 @@ GWiki::Application.routes.draw do
 
   root to: 'welcome#index'
 
-  get "welcome/about"
+  match "about" => 'welcome/about', via: :get
+  match "support" => 'welcome/support', via: :get
 
-  get "welcome/support"
+  resources :users, only: [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
