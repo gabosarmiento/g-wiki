@@ -3,7 +3,7 @@ GWiki::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :users, only: [:show]
-  resources :wikis, only: [:index, :show, :new, :edit]
+  resources :wikis, only: [:index, :show, :new, :edit, :destroy]
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
