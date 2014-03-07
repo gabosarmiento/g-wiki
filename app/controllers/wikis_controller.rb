@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wikis = Wiki.all
+    @wiki = Wiki.visible_to(current_user)
   end
 
   def new
@@ -53,6 +53,8 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error deleting the wiki."
       render :show
     end
+  end
 
+  def hide
   end
 end

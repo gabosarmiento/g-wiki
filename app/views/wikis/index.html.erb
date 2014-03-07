@@ -1,6 +1,7 @@
 <h1>All Wikis</h1>
+
 <table>
-<% @wikis.each do |wiki| %>
+<% @wiki.each do |wiki| %>
 <tr>
   <td><%= link_to wiki.wikiname, wiki %></td>
   <% if can? :edit, wiki %>
