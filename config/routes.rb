@@ -7,7 +7,7 @@ GWiki::Application.routes.draw do
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
-  
+  resources :my_wikis, only: [:index, :show]
   root to: 'welcome#index'
   
 

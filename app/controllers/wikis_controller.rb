@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   def index
-    @wiki = Wiki.visible_to(current_user)
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def new

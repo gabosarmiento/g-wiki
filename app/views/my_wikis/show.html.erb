@@ -1,0 +1,10 @@
+<h1><%= @wiki.wikiname %></h1>
+<small>
+  Updated <%= time_ago_in_words(@wiki.updated_at) %> ago by <%= link_to @wiki.user.username, @wiki.user %><br/>
+</small>
+<% if can? :edit, Wiki %>
+<%= link_to "Edit", edit_wiki_path(@wiki) %>
+<% end %>
+<h3><%= @wiki.description %></h3>
+<p><%= @wiki.body %></p>
+<%= link_to "Back", :back %>
