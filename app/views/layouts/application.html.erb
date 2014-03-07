@@ -8,6 +8,10 @@
 </head>
 <body>
   <h1>G-WIKI</h1>
+  <%= link_to "Sign In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <ul>
     <li><%= link_to "About", welcome_about_path %></li>
     <li><%= link_to "Support", welcome_support_path %></li>
