@@ -1,0 +1,5 @@
+<h1><%= @wiki.wikiname %></h1>
+<%= link_to "Edit", edit_wiki_path(@wiki) %>
+<h3><%= @wiki.description %></h3>
+<p><%= @wiki.body %></p>
+<%= link_to "Back", :back %>

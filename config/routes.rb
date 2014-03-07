@@ -1,12 +1,17 @@
 GWiki::Application.routes.draw do
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  root to: 'welcome#index'
-
-  match "about" => 'welcome/about', via: :get
-  match "support" => 'welcome/support', via: :get
-
   resources :users, only: [:show]
+  resources :wikis
+
+  match "about" => 'welcome#about', via: :get
+  match "support" => 'welcome#support', via: :get
+  
+  root to: 'welcome#index'
+  
+
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

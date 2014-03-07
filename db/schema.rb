@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20140307020904) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "wikis", :force => true do |t|
-    t.string   "title"
+    t.string   "wikiname"
     t.text     "description"
     t.text     "body"
     t.boolean  "public"

@@ -1,0 +1,16 @@
+
+<h1>New Wiki</h1>
+<p>Guidelines for new wikis</p>
+<%= form_for @wiki do |f| %>
+  <div> 
+  <h3>Owner <%= current_user.username %>/<%= f.label :wikiname %>
+  <%= f.text_field :wikiname %></h3>
+
+  <h3><%= f.label :description %>
+  <%= f.text_field :description %></h3>
+  <div>
+  <h3><%= f.label :body %>
+  <%= f.text_area :body %></h3>
+  </div>
+  <%= f.submit "Save" %>
+<% end %>
