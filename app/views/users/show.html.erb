@@ -2,6 +2,9 @@
 <% if current_user.avatar? %>
         <%= image_tag current_user.avatar.url, class: 'pull-right' %>
       <% end %>
-<p> Member since <%= time_ago_in_words(current_user.created_at) %>  
+<p> Member since <%= time_ago_in_words(current_user.created_at) %> 
+<p> Priviledges as <%= current_user.role %> 
+
+ 
 <p><%= link_to "Modify your user", edit_user_registration_path %></p>
 </p>

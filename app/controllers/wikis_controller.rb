@@ -5,6 +5,7 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new  
+    authorize! :create, Wiki, message: "You need to be a member to create a new wiki."
   end
 
   def show
@@ -13,10 +14,12 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize! :edit, Wiki, message: "You need to be a member to update a new wiki."
   end
 
   def create
     @wiki = current_user.wikis.build(params[:wiki])
+    authorize! :create, @wiki, message: "You need to be signed up to do that."
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
@@ -28,8 +31,9 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize! :update, @wiki, message: "You need to be signed up to do that."
     if @wiki.update_attributes(params[:wiki])
-      @wiki.update_attribute(:user_id, current_user.id )
+      #@wiki.update_attribute(:user_id, current_user.id ) => an User could own someone else's wiki by modifying it
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
@@ -39,5 +43,6 @@ class WikisController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @wiki, message: "You need to be signed up to do that."
   end
 end
