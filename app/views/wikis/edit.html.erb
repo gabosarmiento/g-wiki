@@ -1,22 +1,4 @@
 <h1>Edit Wiki</h1>
 <p>Guidelines for editing wikis</p>
-<%= form_for @wiki do |f| %>
-  <div> 
-  <h3>Owner <%= @wiki.user.username %>/<%= f.label :wikiname %>
-  <%= f.text_field :wikiname %></h3>
-
-  <h3><%= f.label :description %>
-  <%= f.text_field :description %></h3>
-  <div>
-  <h3><%= f.label :body %>
-  <%= f.text_area :body %></h3>
-  
-  <br />
-  <%= f.label :public, "Public", :value => "true"  %>
-    <%= f.radio_button :public, true, :checked => true %>
-    <%= f.label :private, "Private", :value => "false" %>
-    <%= f.radio_button :public, false %>
-  
-  </div>
-  <%= f.submit "Save" %>
-<% end %>
+<p>Owner <%= @wiki.user.username %></p>
+<%= render partial: 'wikis/form', locals: { wiki: @wiki } %> 

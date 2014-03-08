@@ -1,0 +1,20 @@
+<%= form_for wiki do |f| %>
+  <div> 
+  <h3><%= f.label :wikiname %></h3>
+  <%= f.text_field :wikiname %>
+
+  <h3><%= f.label :description %></h3>
+  <%= f.text_field :description %>
+  
+  <h3><%= f.label :body %></h3>
+  <%= f.text_area :body %>
+  
+  <br />
+  <%= f.label :public, "Public", :value => "true"  %>
+    <%= f.radio_button :public, true, :checked => true %>
+    <%= f.label :private, "Private", :value => "false" %>
+    <%= f.radio_button :public, false %>
+  
+  </div>
+  <%= f.submit "Save" %>
+<% end %>
