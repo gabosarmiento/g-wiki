@@ -5,5 +5,8 @@ class MyWikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:user_id])
+    if request.path != wiki_path(@wiki)
+      redirect_to @wiki, status: :moved_permanently
+    end
   end
 end
