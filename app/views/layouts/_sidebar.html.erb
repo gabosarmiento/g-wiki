@@ -1,0 +1,13 @@
+<ul class="side-nav">
+    <li><%= link_to "Create Wiki", new_wiki_path, class: "button radius round" %></li>
+    <% if current_user %>
+    <li><%= link_to "My Wikis", my_wikis_path %></li>
+    <% end %>
+    <li><%= link_to "Explore", wikis_path %></li>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "Support", support_path %></li>
+    <% if current_user %>
+    <li><%= link_to "Account", current_user %></li>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+    <% end %>
+</ul>

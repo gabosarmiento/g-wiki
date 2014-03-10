@@ -1,21 +1,6 @@
 
 <h1>New Wiki</h1>
 <p>Guidelines for new wikis</p>
-<%= form_for @wiki do |f| %>
-  <div> 
-  <h3>Owner <%= current_user.username %>/<%= f.label :wikiname %>
-  <%= f.text_field :wikiname %></h3>
+<p>Owner <%= current_user.username %></p>
 
-  <h3><%= f.label :description %>
-  <%= f.text_field :description %></h3>
-  <div>
-  <h3><%= f.label :body %>
-  <%= f.text_area :body %></h3>
-  </br>
-    <%= f.label :public, "Public", :value => "true"  %>
-    <%= f.radio_button :public, true, :checked => true %>
-    <%= f.label :private, "Private", :value => "false" %>
-    <%= f.radio_button :public, false %>
-  </div>
-  <%= f.submit "Save" %>
-<% end %>
+<%= render partial: 'wikis/form', locals: { wiki: @wiki } %> 

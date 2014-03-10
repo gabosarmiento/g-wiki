@@ -21,9 +21,12 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'foundation-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
+
+gem 'stripe'
 
 gem 'jquery-rails'
 

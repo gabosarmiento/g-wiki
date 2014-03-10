@@ -1,39 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>GWIKI</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <h1>G-WIKI</h1>
-  <% unless current_user %>
-  <%= link_to "Sign In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <% end %>
-  <h2><%= link_to "Create Wiki", new_wiki_path %></h2>
-  <ul>
-    <% if current_user %>
-    <li><%= link_to "My Wikis", my_wikis_path %></li>
-    <% end %>
-    <li><%= link_to "Explore", wikis_path %></li>
-    <li><%= link_to "About", about_path %></li>
-    <li><%= link_to "Support", support_path %></li>
-    <% if current_user %>
-    <li><%= link_to "Account", current_user %></li>
-    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-    <% end %>
-  </ul>
-   <% if flash[:notice] %>
-          <%= flash[:notice] %>
-      <% elsif flash[:error] %>
-          <%= flash[:error] %>
-      <% elsif flash[:alert] %>
-          <%= flash[:alert] %>
-    <% end %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <%= yield %>
+    <title><%= content_for?(:title) ? yield(:title) : "GWIKI" %></title>
 
-</body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <div class="contain-to-grid sticky" data-options="sticky_on: large">
+    <%= render 'layouts/topbar' %>
+  </div>
+  <div class="container">
+    
+    <div class="row">
+      <%= render 'layouts/notifications' %>
+      <div class="small-3 columns">
+      <%= render 'layouts/sidebar' %>
+      </div>
+      <div class="small-9 columns">
+          <%= yield %>   
+      </div>
+    </div>
+  </div>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
