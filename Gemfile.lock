@@ -78,6 +78,13 @@ GEM
       sass (>= 3.2.0)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
+    haml (4.0.5)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.9)
@@ -198,6 +205,7 @@ DEPENDENCIES
   fog
   foundation-rails
   friendly_id (~> 4.0.10)
+  haml-rails
   jquery-rails
   mini_magick
   modernizr-rails
