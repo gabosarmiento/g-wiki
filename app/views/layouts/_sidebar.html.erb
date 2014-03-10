@@ -1,5 +1,6 @@
 <ul class="side-nav">
-    <li><%= link_to "Create Wiki", new_wiki_path, class: "button radius round" %></li>
+    
+    <li><%= link_to "  Create Wiki", new_wiki_path, class: "button radius fi-cloud" %></li>
     <% if current_user %>
     <li><%= link_to "My Wikis", my_wikis_path %></li>
     <% end %>
@@ -7,7 +8,17 @@
     <li><%= link_to "About", about_path %></li>
     <li><%= link_to "Support", support_path %></li>
     <% if current_user %>
-    <li><%= link_to "Account", current_user %></li>
-    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-    <% end %>
+    <li>
+        <i data-tooltip class="tip-left radius" title="Settings">
+        <%= link_to user_path(current_user), class: 'button radius' do%> 
+        <i class="fi-widget large"></i>
+        <% end %>
+        </i>
+        <i data-tooltip class="tip-right radius" title="logout <%=current_user.email %>">
+        <%= link_to destroy_user_session_path, method: :delete, class: 'button radius' do%> 
+        <i class="fi-power large"></i>
+        <% end %>
+        </i>
+        <% end %>
+    </li>
 </ul>

@@ -1,4 +1,4 @@
-<h1><%= markdown @wiki.wikiname %></h1>
+<h1><%= @wiki.wikiname %></h1>
 <small>
   Updated <%= time_ago_in_words(@wiki.updated_at) %> ago by <%= link_to @wiki.user.username, @wiki.user %><br/>
 </small>

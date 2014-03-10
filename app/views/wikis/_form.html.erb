@@ -1,20 +1,70 @@
-<%= form_for wiki do |f| %>
-  <div> 
-  <h3><%= f.label :wikiname %></h3>
-  <%= f.text_field :wikiname %>
-
-  <h3><%= f.label :description %></h3>
-  <%= f.text_field :description %>
-  
-  <h3><%= f.label :body %></h3>
-  <%= f.text_area :body %>
-  
-  <br />
-  <%= f.label :public, "Public", :value => "true"  %>
-    <%= f.radio_button :public, true, :checked => true %>
-    <%= f.label :private, "Private", :value => "false" %>
-    <%= f.radio_button :public, false %>
-  
+<%= simple_form_for wiki do |f| %>
+  <div class="row"> 
+    <div class="small-8">
+      <div class="row">
+        <div class="small-3 columns">
+          <%= f.label :wikiname, class: 'right inline' %>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :wikiname, id:"right-label", placeholder: "Write the title" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= f.submit "Save" %>
-<% end %>
+  
+  <div class="row"> 
+    <div class="small-8">
+      <div class="row">
+        <div class="small-3 columns">
+        <%= f.label :description, class: 'right inline'  %>
+        </div>
+        <div class="small-9 columns">
+          <%= f.text_field :description, id:"right-label", placeholder: "Write the description" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="small-8">
+      <div class="row">
+        <div class="small-3 columns">
+        <%= f.label :body, class: 'right inline'  %>
+        </div>
+        <div class="small-9 columns">
+        <%= f.text_area :body, id:"right-label" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row"> 
+    <div class="small-8">
+        <div class="row">
+          <div class="small-3 columns">
+          </div>
+          <div class="small-9 columns">
+            <%= f.radio_button :public, true, :checked => true%>
+            <%= f.label :public, "Public", :value => "true" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <div class="row"> 
+    <div class="small-8">
+        <div class="row">
+            <div class="small-3 columns">
+            </div>
+            <div class="small-9 columns">
+              <%= f.radio_button :public, false, title: "Get Private wikis with a monthly subscription", data: {tooltip: true }, class: "has-tip tip-left radius" %>
+              <%= f.label :private, "Private", :value => "false" %>
+              <i class="fi-lock"></i>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="row"> 
+  <%= f.submit "Save" , class: 'button radius small-offset-4'%>
+  </div>
+  <% end %>

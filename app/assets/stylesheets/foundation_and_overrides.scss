@@ -1203,3 +1203,7 @@
 // $include-legacy-visibility-classes: true;
 
 @import 'foundation';
+
+.img-circle {
+  border-radius: 50%;
+}
