@@ -7,7 +7,7 @@ class ChargesController < ApplicationController
       data: {
         key: "#{ Rails.configuration.stripe[:publishable_key] }",
         description: "G-WIKI Membership - #{current_user.username}",
-        amount: 9_000_000_000_00 # We're like the Snapchat for Wikipedia
+        amount: 9000 # We're like the Snapchat for Wikipedia
       }
     }
   end
@@ -38,6 +38,6 @@ class ChargesController < ApplicationController
   # This `rescue block` catches and displays those errors.
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to charges_path
   end
 end
