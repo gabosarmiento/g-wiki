@@ -1,9 +1,5 @@
 GWiki::Application.routes.draw do
 
-  get "charges/create"
-
-  get "charges/new"
-
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   resources :users, only: [:show]

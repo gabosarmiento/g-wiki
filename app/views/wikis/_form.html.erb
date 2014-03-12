@@ -37,6 +37,7 @@
     </div>
   </div>
   <% end %>
+
   <%= control_group_tag(wiki.errors[:body]) do %>
   <div class="row">
     <div class="small-8">
@@ -44,8 +45,10 @@
         <div class="controls small-3 columns">
         <%= f.label :body, class: 'control-label right inline'  %>
         </div>
+        <div class="epiceditor">
         <div class="small-9 columns">
-        <%= f.text_area :body, id:"right-label" %>
+          <textarea id:"my-text-area"></textarea>
+        <%= f.text_area :body, id:"right-label", style:"display:none" %>
         </div>
       </div>
     </div>
@@ -79,6 +82,8 @@
       </div>
   </div>
   <div class="row"> 
-  <%= f.submit "Save" , class: 'button radius small-offset-4'%>
+  <%= f.submit "Save" , class: 'button radius small-offset-4' %>
   </div>
   <% end %>
+
+  <%= javascript_include_tag "epiceditor" %>
