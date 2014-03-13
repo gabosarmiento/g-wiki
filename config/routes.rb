@@ -1,4 +1,4 @@
-GWiki::Application.routes.draw do
+
 
   get "users/update"
 
