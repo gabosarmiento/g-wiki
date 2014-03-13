@@ -16,7 +16,7 @@ $(document).ready(function(){
       theme: {
         base: 'themes/base/epiceditor.css',
         preview: 'themes/preview/github.css',
-        editor: 'themes/editor/epic-dark.css'
+        editor: 'themes/editor/epic-light.css'
       },
       button: {
         preview: true,

@@ -54,6 +54,7 @@ u = User.new(
   password_confirmation: 'helloworld')
 u.skip_confirmation!
 u.save
+u.update_attribute(:role, 'member')
 
 puts "Seed finished"
 puts "#{User.count} users created"

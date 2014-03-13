@@ -1,6 +1,7 @@
 class MyWikisController < ApplicationController
   def index
     @wikis = Wiki.visible_to(current_user).where(:user_id => current_user.id)
+    @pwikis = @wikis.where(:public => false)
   end
 
   def show

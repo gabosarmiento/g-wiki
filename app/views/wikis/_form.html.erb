@@ -81,16 +81,19 @@
               <i class="fi-lock"></i>
               <!-- upgrade upsell -->
               <div class="js-charges hide">
-                <h3>Set private account</h3>
+                <div class="row"> 
+                <h4>Set private account</h4>
                 <span class="note">In order to make this wiki private, you’ll need to upgrade your account from Free to Basic.
-This will cost $5.00/month</span>
+This will only cost $5.00/month</span>
+                <span><%= render 'charges/form' %></span>
               </div>
             </div>
         </div>
       </div>
     </div>
+  </div>
 
   <div class="row"> 
-  <%= f.submit "Save" , class: 'button radius small-offset-4' %>
+  <%= f.submit "Save" , class: 'button radius small-offset-2' %>
   </div>
   <% end %>
