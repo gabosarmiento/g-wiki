@@ -1,10 +1,11 @@
 GWiki::Application.routes.draw do
 
+  get "users/update"
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   resources :users, only: [:show]
   resources :wikis
-
   resources :charges, only: [:new, :create]
 
   match "about" => 'welcome#about', via: :get

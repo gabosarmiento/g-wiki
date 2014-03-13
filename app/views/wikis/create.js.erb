@@ -1,0 +1,7 @@
+
+<% if @wiki.valid? %>
+  <%= link_to "Charges", new_charges_path %></li>
+<% else %>
+  <%= link_to 'Back', :back %>
+<% end %>
+});

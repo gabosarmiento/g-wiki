@@ -1,4 +1,6 @@
 class WikisController < ApplicationController
+  respond_to :html, :js
+
   def index
     @wikis = Wiki.visible_to(current_user)
   end
@@ -30,6 +32,8 @@ class WikisController < ApplicationController
     flash[:error] = "There was an error saving the wiki. Please try again."
     render :new
     end
+
+    
   end
 
   def update
@@ -43,6 +47,7 @@ class WikisController < ApplicationController
       flash[:error] = "There was an error saving the wiki. Please try again."
       render :edit
     end
+
   end
 
   def destroy

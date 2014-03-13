@@ -1,3 +1,5 @@
+
+<%= javascript_include_tag "epiceditor" %>
 <%= simple_form_for wiki do |f| %>
   <% if wiki.errors.any? %>
     <div class="alert">
@@ -45,23 +47,23 @@
         <div class="controls small-3 columns">
         <%= f.label :body, class: 'control-label right inline'  %>
         </div>
-        <div class="epiceditor">
+        
         <div class="small-9 columns">
-          <textarea id:"my-text-area"></textarea>
-        <%= f.text_area :body, id:"right-label", style:"display:none" %>
+          <div id="epiceditor"></div>
+        <%= f.text_area :body, style:"display:none" %>
         </div>
-      </div>
     </div>
   </div>
+</div>
   <% end %>
-  
+
   <div class="row"> 
     <div class="small-8">
         <div class="row control-group">
           <div class="small-3 columns">
           </div>
           <div class="controls small-9 columns">
-            <%= f.radio_button :public, true, :checked => true%>
+            <%= f.radio_button :public, true, :checked => true %>
             <%= f.label :public, "Public", :value => "true" %>
           </div>
         </div>
@@ -73,17 +75,22 @@
         <div class="row control-group">
             <div class="small-3 columns">
             </div>
-            <div class="controls small-9 columns">
-              <%= f.radio_button :public, false, title: "Get Private wikis with a monthly subscription", data: {tooltip: true }, class: "has-tip tip-left radius" %>
+            <div class="controls small-9 columns ">
+              <%= f.radio_button :public, false %>
               <%= f.label :private, "Private", :value => "false" %>
               <i class="fi-lock"></i>
+              <!-- upgrade upsell -->
+              <div class="js-charges hide">
+                <h3>Set private account</h3>
+                <span class="note">In order to make this wiki private, you’ll need to upgrade your account from Free to Basic.
+This will cost $5.00/month</span>
+              </div>
             </div>
         </div>
       </div>
-  </div>
+    </div>
+
   <div class="row"> 
   <%= f.submit "Save" , class: 'button radius small-offset-4' %>
   </div>
   <% end %>
-
-  <%= javascript_include_tag "epiceditor" %>
