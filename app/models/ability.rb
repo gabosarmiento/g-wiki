@@ -7,7 +7,8 @@ class Ability
     # if a member, they can manage their own wikis 
     # (or create new ones)
     if user.role? :member
-        can :update, :all
+        can :update, Wiki
+        cannot :update, Wiki, :public => false 
         can :create, :all
     end
 
@@ -18,6 +19,7 @@ class Ability
 
     # Clients can read their own private wikis
     if user.role? :client
+        can :update, Wiki, :public => false 
         can :read, Wiki, :user_id => user.id, public: false
     end
     

@@ -69,7 +69,6 @@
         </div>
       </div>
     </div>
-
    <div class="row"> 
     <div class="small-8">
         <div class="row control-group">
@@ -80,20 +79,23 @@
               <%= f.label :private, "Private", :value => "false" %>
               <i class="fi-lock"></i>
               <!-- upgrade upsell -->
-              <div class="js-charges hide">
-                <div class="row"> 
-                <h4>Set private account</h4>
-                <span class="note">In order to make this wiki private, you’ll need to upgrade your account from Free to Basic.
-This will only cost:</span>
-                <span><%= render 'charges/form' %></span>
+              <div class="js-notes hide">
+                <% if  current_user.role == 'client' || current_user.role == 'admin'  %>
+                <%= content_tag :div, id: "js-client-note" do -%>
+                  <%="You have current_user.pwikis left"%>
+                <% end -%>
+                <% else %>
+                <%= content_tag :div, id: "js-free-note" do -%>
+                  <%= "In order to make this wiki private, you’ll need to upgrade your account from Free to Basic." %> <%=link_to "Buy a subscription", '/charges/new' %> 
+                <% end -%>
+                <% end %>
+                </div>
               </div>
             </div>
         </div>
       </div>
-    </div>
-  </div>
-
   <div class="row"> 
-  <%= f.submit "Save" , class: 'button radius small-offset-2' %>
+
+  <%= f.submit "Save" , id:"btnSave", class: 'button radius small-offset-2' %>
   </div>
   <% end %>

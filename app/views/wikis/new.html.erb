@@ -3,5 +3,7 @@
 <p>Guidelines for new wikis</p>
 <p>Owner <%= current_user.username %></p>
 <div class="row">
+<% if can? :update, @wiki %>
 <%= render partial: 'wikis/form', locals: { wiki: @wiki } %> 
+<% end %>
 </div>

@@ -44,7 +44,7 @@ gem 'faker'
 
 gem 'devise'
 
-gem 'cancan'
+gem "cancan"
 
 gem 'figaro'
 
