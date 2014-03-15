@@ -21,6 +21,7 @@ class Ability
     if user.role? :client
         can :update, Wiki, :public => false 
         can :read, Wiki, :user_id => user.id, public: false
+        can :manage, Wiki, :collaborations => { :user_id => user.id }
     end
     
     # Admins can do anything

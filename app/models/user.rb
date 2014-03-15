@@ -9,10 +9,11 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :wikis, dependent: :destroy
   has_many :sales
+  has_and_belongs_to_many :wiki_collaborations, :join_table => 'wiki_collaborators'
   before_create :set_member
-  validates_numericality_of :price,
-    greater_than: 49,
-    message: "must be at least 50 cents"
+  #validates_numericality_of :price,
+    #greater_than: 49,
+    #message: "must be at least 50 cents"
 
   mount_uploader :avatar, AvatarUploader
 
@@ -38,6 +39,9 @@ class User < ActiveRecord::Base
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
   end  
 
+  def collaborating(wiki)
+    self.collaborations.where(id: wiki.id).first
+  end
 
   private
 

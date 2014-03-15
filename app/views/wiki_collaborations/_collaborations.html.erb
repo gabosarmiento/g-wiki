@@ -1,0 +1,7 @@
+<div class="wiki-collaborations">
+  <% if wiki_collaborators = current_user.collaborating(wiki) %>
+    <%= link_to "#", class: 'button', method: :delete %>
+  <% else %>
+    <%= link_to "#", class: 'button', method: :post %>
+  <% end %>
+</div>

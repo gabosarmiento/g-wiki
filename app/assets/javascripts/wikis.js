@@ -40,11 +40,17 @@ $(document).ready(function(){
     var editor = new EpicEditor(opts).load();
 
     $("#wiki_public_false").click(function() {
-        $(".js-charges").removeClass('hide').slideDown();
+        $(".js-notes").slideDown().removeClass('hide');
+        if (document.getElementById("js-free-note")) {
+          document.getElementById("btnSave").disabled = true; 
+        }
+        else
+          document.getElementById("btnSave").disabled = false; 
       });
 
     $("#wiki_public_true").click(function() {
-        $(".js-charges").hide().removeClass('hide').slideUp();
+        $(".js-notes").slideUp().addClass('hide');
+        document.getElementById("btnSave").disabled = false;
       });
   });
 

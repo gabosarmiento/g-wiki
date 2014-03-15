@@ -1,6 +1,7 @@
 class Wiki < ActiveRecord::Base
   attr_accessible :wikiname, :description, :body, :public
   belongs_to :user
+  has_and_belongs_to_many :collaborators, :class_name => 'User', :join_table => 'wiki_collaborators'
   before_create :set_visibility
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) }
 
