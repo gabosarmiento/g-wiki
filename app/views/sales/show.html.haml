@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Email:
+  = @sale.email
+%p
+  %b Guid:
+  = @sale.guid
+%p
+  %b User:
+  = @sale.user
+
+= link_to 'Edit', edit_sale_path(@sale)
+\|
+= link_to 'Back', sales_path

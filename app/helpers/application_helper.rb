@@ -14,4 +14,9 @@ module ApplicationHelper
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render text).html_safe
   end
+
+  def formatted_price(amount)
+    sprintf("$%0.2f", amount / 100.0)
+  end
+
 end

@@ -1,8 +1,7 @@
 <h1>My Wikis</h1>
-
+<% if can? :read, Wiki %>
 <%= render partial: 'wikis/wikis', locals: { wikis: @wikis } %> 
 
 <h1>My Private Wikis</h1>
-<% if can? :read, Wiki %>
 <%= render partial: 'wikis/wikis', locals: { wikis: @pwikis } %> 
 <% end %>
