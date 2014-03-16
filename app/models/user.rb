@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :wikis, dependent: :destroy
   has_many :sales
-  has_and_belongs_to_many :wiki_collaborations, :join_table => 'wiki_collaborators'
+  has_many :collaborations
+  has_many :users, :through => :collaborations
   before_create :set_member
   #validates_numericality_of :price,
     #greater_than: 49,

@@ -3,6 +3,8 @@
 <% if can? :edit, Wiki %>
 <%= link_to "Edit", edit_wiki_path(@wiki) %>
 <% end %>
+<%= link_to "Collaborators", wiki_collaboration_path(@wiki) %>
+
 <h3><%= markdown @wiki.description %></h3>
 <p><%= markdown @wiki.body %></p>
 <%= link_to "Back", :back %>
