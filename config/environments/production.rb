@@ -55,6 +55,7 @@ GWiki::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
+  config.eager_load = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
