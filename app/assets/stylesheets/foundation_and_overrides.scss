@@ -314,7 +314,7 @@
 //
 
 // $include-html-button-classes: $include-html-classes;
-
+  
 // We use these to build padding for buttons.
 // $button-tny: rem-calc(10);
 // $button-sml: rem-calc(14);
@@ -1127,7 +1127,7 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
+ $topbar-bg-color: #008cba;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1201,9 +1201,14 @@
 // $include-html-visibility-classes: $include-html-classes;
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
-
-@import 'foundation';
-
 .img-circle {
   border-radius: 50%;
 }
+
+@import 'foundation';
+
+
+
+
+   
+

@@ -1,5 +1,5 @@
 <h1><%= @wiki.wikiname %></h1>
-  Updated <%= time_ago_in_words(@wiki.updated_at) %> ago <br/>
+  Last updated <%= time_ago_in_words(@wiki.updated_at) %> ago <br/>
 <% if can? :edit, Wiki %>
 <%= link_to "Edit", edit_wiki_path(@wiki), class: 'button small radius' %>
 <% end %>
