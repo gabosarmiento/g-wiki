@@ -69,6 +69,8 @@
         </div>
       </div>
     </div>
+
+  <% if can? :destroy, @wiki #proxy for clients only %> 
    <div class="row"> 
     <div class="small-8">
         <div class="row control-group">
@@ -94,6 +96,7 @@
             </div>
         </div>
       </div>
+    <% end %>
   <div class="row"> 
 
   <%= f.submit "Save" , id:"btnSave", class: 'button radius small-offset-2' %>

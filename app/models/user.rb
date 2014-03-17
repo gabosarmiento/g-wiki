@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  ROLES = %w[member moderator client admin]
+  ROLES = %w[member client moderator admin]
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
   end  

@@ -1,9 +1,0 @@
-<div class ="pick">
-  <% if collaboration = current_user.collaborating(wiki) %>
-  <%= link_to [user, wiki, collaboration], class: 'button', method: :delete %>
-</div>
-<% else %>
-<div class ="assign">
-  <%= link_to [user, wiki, Collaborations.new], class: 'button', method: :post %>
-</div>
-<% end %>

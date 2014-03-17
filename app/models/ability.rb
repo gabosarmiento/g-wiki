@@ -12,16 +12,19 @@ class Ability
         can :create, :all
     end
 
-    # Moderators can delete any wiki
-    if user.role? :moderator
-      can :destroy, Wiki
-    end
-
     # Clients can read their own private wikis
     if user.role? :client
         can :update, Wiki, :public => false 
         can :read, Wiki, :user_id => user.id, public: false
+        can :destroy, Wiki, :user_id => user.id
+        can :create, Wiki, :collaborations => { :user_id => user.id }
+        can :destroy, Wiki, :collaborations => { :user_id => user.id }
         can :manage, Wiki, :collaborations => { :user_id => user.id }
+    end
+
+    # Moderators can delete any wiki
+    if user.role? :moderator
+      can :destroy, Wiki
     end
     
     # Admins can do anything
