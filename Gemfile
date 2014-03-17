@@ -33,7 +33,7 @@ end
 gem 'brakeman'
 
 gem 'stripe'
-
+gem "stripe_event"
 gem 'jquery-rails'
 
 gem 'newrelic_rpm'
