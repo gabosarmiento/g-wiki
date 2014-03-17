@@ -1,1 +1,13 @@
-
+<h3>Collaborators</h3>
+<div class="row">
+<%= link_to "Add", new_wiki_collaboration_path , class: 'button radius' %>
+</div>
+<table>
+<% @collaborations.each do |collaboration| %>
+<tr>
+  <td> <%= collaboration.user.username %></td>
+  <td> <%= collaboration.user.email %></td>
+  <td><%= link_to "delete",  wiki_collaboration_path(@wiki, collaboration) , method: :delete, confirm: 'Are you sure you want to delete this collaborator?' %></td>
+</tr>
+<% end %>
+</table>

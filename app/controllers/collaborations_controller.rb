@@ -1,29 +1,37 @@
 class CollaborationsController < ApplicationController
+  respond_to :html, :js 
+  def index
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaborations = Wiki.find(params[:wiki_id]).collaborations
+  end
 
-  def show
-    @collaboration = Wiki.find(params[:id]).collaborations
+  def new
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaboration = @wiki.collaborations.new
+    @user = User.all
   end
 
   def create
-    @wiki = Wiki.find(params[:wiki_id])
-    @collaborations = current_user.collaborations.create(wiki_id: @wiki.id)
+    @wiki = Wiki.find(params[:wiki_id]) 
+    @user = User.find(params[:user_ids])
+    @collaborations = @wiki.collaborations.create(user_id: @user.id)
     if @collaborations.save
       flash[:notice] = "Collaborator was saved."
       redirect_to @wiki
     else
     flash[:error] = "There was an error saving the collaborator. Please try again."
-      redirect_to @wiki 
+      redirect_to :new
     end
   end
 
   def destroy 
-     @collaborations = current_user.collaborations.find(params[:id])
-    if @collaborations.destroy
+     @collaboration = Collaboration.find(params[:id])
+    if @collaboration.destroy
       flash[:notice] = "Removed collaborator"
-      redirect_to wiki_path
+      redirect_to :back
     else
       flash[:error] = "Unable to remove collaborator. Please try again."
-      redirect_to wiki_path
+      redirect_to :back
     end
   end
 

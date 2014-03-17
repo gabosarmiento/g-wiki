@@ -6,14 +6,15 @@ GWiki::Application.routes.draw do
 
   resources :users, only: [:show]
   resources :wikis do
-    resources :collaborations
+    resources :collaborations, only: [:index, :new, :create, :destroy]
     end
-
+    
+  resources :my_wikis, only: [:index, :show]
   resources :charges, only: [:new, :create]
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
-  resources :my_wikis, only: [:index, :show]
+  
   root to: 'welcome#index'
 
 end
