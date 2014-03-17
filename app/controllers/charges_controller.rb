@@ -24,7 +24,7 @@ class ChargesController < ApplicationController
     flash[:success] = "Thanks for all the money, #{current_user.username}! Feel free to pay me again."
     current_user.role ='client'
     current_user.save
-    redirect_to :back
+    redirect_to user_path(current_user)
 
   # Stripe will send back CardErrors, with friendly messages
   # when something goes wrong.

@@ -70,7 +70,7 @@
       </div>
     </div>
 
-  <% if can? :destroy, @wiki #proxy for clients only %> 
+  <% if can? :update, @wiki %> 
    <div class="row"> 
     <div class="small-8">
         <div class="row control-group">
@@ -84,7 +84,7 @@
               <div class="js-notes hide">
                 <% if  current_user.role == 'client' || current_user.role == 'admin'  %>
                 <%= content_tag :div, id: "js-client-note" do -%>
-                  <%="You have current_user.pwikis left"%>
+                  Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %>
                 <% end -%>
                 <% else %>
                 <%= content_tag :div, id: "js-free-note" do -%>
