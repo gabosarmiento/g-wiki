@@ -6,7 +6,7 @@ class Ability
 
     # if a member, they can manage their own wikis 
     # (or create new ones)
-    if user.role? :member
+    if user.role? :clientfree
         can :update, Wiki
         cannot :update, Wiki, :public => false 
         can :create, :all
@@ -17,8 +17,6 @@ class Ability
         can :update, Wiki, :public => false 
         can :read, Wiki, :user_id => user.id, public: false
         can :destroy, Wiki, :user_id => user.id
-        can :create, Wiki, :collaborations => { :user_id => user.id }
-        can :destroy, Wiki, :collaborations => { :user_id => user.id }
         can :manage, Wiki, :collaborations => { :user_id => user.id }
         can :view, :basic
     end
@@ -27,8 +25,6 @@ class Ability
         can :update, Wiki, :public => false 
         can :read, Wiki, :user_id => user.id, public: false
         can :destroy, Wiki, :user_id => user.id
-        can :create, Wiki, :collaborations => { :user_id => user.id }
-        can :destroy, Wiki, :collaborations => { :user_id => user.id }
         can :manage, Wiki, :collaborations => { :user_id => user.id }
         can :view, :pro
     end

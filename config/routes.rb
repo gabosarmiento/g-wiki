@@ -6,7 +6,6 @@ GWiki::Application.routes.draw do
   resources :sales
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
-
   resources :users, only: [:show]
   resources :wikis do
     resources :collaborations, only: [:index, :new, :create, :destroy]
@@ -17,7 +16,6 @@ GWiki::Application.routes.draw do
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
-  match "subscriptions" => 'welcome#subscriptions', via: :get
   root to: 'welcome#index'
 
 end

@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  ROLES = %w[member clientbasic clientpro moderator admin]
+  ROLES = %w[clientfree clientbasic clientpro moderator admin]
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
   end  
@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   private
 
   def set_member
-    self.role = 'member'
+    self.role = 'clientfree'
   end
 
 end
