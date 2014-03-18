@@ -1,5 +1,8 @@
 GWiki::Application.routes.draw do
 
+  get "wikis/basic" => "content#basic", :as => :content_basic
+  get "wikis/pro" => "content#pro", :as => :content_pro
+
   resources :sales
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
