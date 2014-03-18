@@ -14,7 +14,7 @@ GWiki::Application.routes.draw do
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
-  
+  match "subscriptions" => 'welcome#subscriptions', via: :get
   root to: 'welcome#index'
 
 end

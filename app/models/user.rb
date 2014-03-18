@@ -43,7 +43,12 @@ class User < ActiveRecord::Base
   def collaborating(wiki)
     self.collaborations.where(id: wiki.id).first
   end
-
+  
+  #Users with an “example.com” domain will not be added to Stripe as subscribers; they will only be added to the application database.
+  # def update_stripe
+  # return if email.include?(ENV['ADMIN_EMAIL'])
+  # return if email.include?('@example.com') and not Rails.env.production?
+  # end
   private
 
   def set_member
