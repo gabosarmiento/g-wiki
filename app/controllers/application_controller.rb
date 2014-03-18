@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
     case current_user.role
       when 'admin'
         user_path(current_user)
-      when 'clientfree'
+      when 'free'
         user_path(current_user)
-      when 'clientbasic'
+      when 'basic'
         content_basic_path
-      when 'clientpro'
+      when 'pro'
         content_pro_path
       else
         root_path

@@ -1,3 +1,6 @@
+<% content_for :head do %>
+  <%= tag :meta, :name => "stripe-key", :content =>  Rails.configuration.stripe[:publishable_key] %>
+<% end %>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -65,4 +68,4 @@
   </div>
 </div>
 
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class: 'button small radius' %>

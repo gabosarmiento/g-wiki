@@ -3,15 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= content_for?(:title) ? yield(:title) : "GWIKI" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Wiki Membership Saas" %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
 
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag :modernizr %>
     <%= csrf_meta_tags %>
+    <%= yield(:head) %>
   </head>
 
-  <body>
+  <body class="<%= controller_name %> <%= action_name %>">
+
   <div class="contain-to-grid sticky" data-options="sticky_on: large">
     <%= render 'layouts/topbar' %>
   </div>

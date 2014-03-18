@@ -82,7 +82,7 @@
               <i class="fi-lock"></i>
               <!-- upgrade upsell -->
               <div class="js-notes hide">
-                <% if  current_user.role == 'client' || current_user.role == 'admin'  %>
+                <% if  current_user.role == 'basic' || current_user.role == 'pro' || current_user.role == 'admin'  %>
                 <%= content_tag :div, id: "js-client-note" do -%>
                   Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %>
                 <% end -%>
