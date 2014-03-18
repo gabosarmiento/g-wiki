@@ -2,14 +2,10 @@
   <h1>Add collaborators</h1>
 
   <%= simple_form_for @collaboration,  url: {action: "create"}, html: {class: "collaboration-form"} do |f| %>
-  <table>
-    <% @user.each do |u| %>
-    <tr>
-      <td><%= u.username %></td>
-      <td><%= check_box_tag ("user_ids"), u.id %></td>
-    </tr>
-    <% end %>
-  </table>
+  
+  <%= collection_select(:collaboration, :user_id, User.all, :id, :username, options ={:prompt => "Select a collaborator"}) %>
+
+
     <%= f.submit "Save", class: "button small radius" %>
   <% end %>
 <% end %>

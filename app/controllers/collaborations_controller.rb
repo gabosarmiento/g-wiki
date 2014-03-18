@@ -13,7 +13,7 @@ class CollaborationsController < ApplicationController
 
   def create
     @wiki = Wiki.find(params[:wiki_id]) 
-    @user = User.find(params[:user_ids])
+    @user = User.find(params[:collaboration][:user_id])
     @collaborations = @wiki.collaborations.create(user_id: @user.id)
     if @collaborations.save
       flash[:notice] = "Collaborator was saved."
