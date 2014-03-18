@@ -6,7 +6,19 @@ class ApplicationController < ActionController::Base
   end  
 
   def after_sign_in_path_for(resource)
-  user_path(current_user)
+    case current_user.role
+      when 'admin'
+        user_path(current_user)
+      when 'clientfree'
+        user_path(current_user)
+      when 'clientbasic'
+        content_basic_path
+      when 'clientpro'
+        content_pro_path
+      else
+        root_path
+    end
+  
   end
 
   def after_sign_out_path_for(resource_or_scope)
