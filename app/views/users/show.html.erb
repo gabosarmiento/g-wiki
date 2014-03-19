@@ -7,6 +7,8 @@
 <p> Member since <strong><%= time_ago_in_words(current_user.created_at) %> </strong></p>
 <p> Priviledges as <strong><%= current_user.role %> </strong></p>
 <p> Wikis created <strong><%= link_to current_user.wikis.count, my_wikis_path %></strong></p>
+
+<p> Private Wikis created <strong><%= link_to current_user.private_wikis, my_wikis_path %></strong></p>
  
 <p><%= link_to "Modify your user", edit_user_registration_path , class: 'button small radius' %></p>
 <% if can? :destroy, Wiki %>

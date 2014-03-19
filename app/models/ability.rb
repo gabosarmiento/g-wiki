@@ -9,7 +9,7 @@ class Ability
     if user.role? :free
         can :update, Wiki
         cannot :update, Wiki, :public => false 
-        can :create, :all
+        can :create, :all 
     end
 
     # Clients can read their own private wikis

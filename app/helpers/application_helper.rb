@@ -33,4 +33,7 @@ module ApplicationHelper
     sprintf("$%0.2f", amount / 100.0)
   end
 
+  def can_create_wiki?(user)
+    self.wikis.where(:public => false).count < self.wiki_limit 
+  end
 end

@@ -45,12 +45,8 @@ class User < ActiveRecord::Base
   def collaborating(wiki)
     self.collaborations.where(id: wiki.id).first
   end
-  
+
   #Users with an “example.com” domain will not be added to Stripe as subscribers; they will only be added to the application database.
-  # def update_stripe
-  # return if email.include?(ENV['ADMIN_EMAIL'])
-  # return if email.include?('@example.com') and not Rails.env.production?
-  # end
 
   def update_stripe
     return if email.include?(ENV['ADMIN_EMAIL'])
@@ -93,11 +89,29 @@ class User < ActiveRecord::Base
     self.stripe_token = nil
     false
   end
+  # Count users private wikis
+  def private_wikis
+    self.wikis.where(:public => false).count
+  end
 
+  # User with a free plan can create 1 private wiki, 
+  # with a basic plan can create 5 wikis,
+  # with a pro plan can create unlimited private wikis
+  def wiki_limit
+    case self.role
+      when 'admin'
+        1000000
+      when 'free'
+        1
+      when 'basic'
+        5
+      when 'pro'
+        100000
+      else
+        0
+    end
+  end
   private
-
-  # def set_member
-  #   self.role = 'free'
-  # end
+   
 
 end

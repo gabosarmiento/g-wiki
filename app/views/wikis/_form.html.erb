@@ -70,7 +70,6 @@
       </div>
     </div>
 
-  <% if can? :update, @wiki %> 
    <div class="row"> 
     <div class="small-8">
         <div class="row control-group">
@@ -82,13 +81,13 @@
               <i class="fi-lock"></i>
               <!-- upgrade upsell -->
               <div class="js-notes hide">
-                <% if  current_user.role == 'basic' || current_user.role == 'pro' || current_user.role == 'admin'  %>
+                <% if  current_user.private_wikis < current_user.wiki_limit %>
                 <%= content_tag :div, id: "js-client-note" do -%>
-                  Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %>
+                  <%= "You have #{current_user.wiki_limit - current_user.private_wikis} private Wikis remaining." %>
                 <% end -%>
                 <% else %>
                 <%= content_tag :div, id: "js-free-note" do -%>
-                  <%= "In order to make this wiki private, you’ll need to upgrade your account from Free to Basic." %> <%=link_to "Buy a subscription", '/charges/new' %> 
+                  <%= "You have #{current_user.wiki_limit - current_user.private_wikis} private Wikis left. With the #{current_user.role.titleize} plan you only get #{pluralize(current_user.wiki_limit, "Private Wiki")}. In order to make this Wiki private, you’ll need to upgrade your current plan or delete a private Wiki." %> <%=link_to "Upgrade subscription", '/registrations/new' %> 
                 <% end -%>
                 <% end %>
                 </div>
@@ -96,7 +95,6 @@
             </div>
         </div>
       </div>
-    <% end %>
   <div class="row"> 
 
   <%= f.submit "Save" , id:"btnSave", class: 'button radius small-offset-2' %>

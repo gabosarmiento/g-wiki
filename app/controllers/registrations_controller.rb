@@ -1,3 +1,4 @@
+class RegistrationsController < Devise::RegistrationsController
 def new
     @plan = params[:plan]
     if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"

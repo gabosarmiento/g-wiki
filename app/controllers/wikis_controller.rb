@@ -26,7 +26,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.build(params[:wiki])
-    authorize! :create, @wiki, message: "You need to be signed up to do that."
+    authorize! :create, @wiki, message: "You need to have a subscription to do that."
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
