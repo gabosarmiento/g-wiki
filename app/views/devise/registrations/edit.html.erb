@@ -1,8 +1,14 @@
+<% content_for :head do %>
+  <%= tag :meta, :name => "stripe-key", :content =>  Rails.configuration.stripe[:publishable_key] %>
+<% end %>
+<h2>Account</h2>
+<div id="stripe_error" class="alert alert-error" style="display:none" ></div>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= f.error_notification %>
   <%= devise_error_messages! %>
-
+  <%= display_base_errors resource %>
   <div class="form-inputs">
 
     <div class="control-group">
@@ -17,7 +23,6 @@
       <%= f.email_field :email %>
     </div>
   </div>
-
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div class="control-group">
@@ -54,15 +59,73 @@
   </div>  
 <% end %>
 
+<h3>Subscription Plan: <%= @user.role.titleize %> </h3>
+<h2>
+  <a href="#" data-reveal-id="plan-options" class="button small radius" >Change plan</a>
+</h2>
+
+<h3>Card: Using card ending with <%= @user.last_4_digits %></h3>
+<p>
+  
+  <a href="#" data-reveal-id="card-data" class="button small radius" type="button">Change card</a>
+</p>
+
 <h3>Cancel my account</h3>
 <div class="horizontal-form">
   <div class="control-group">
     <div class="controls">
       <p>
-        <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button small radius' %>
+        <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button small radius' %>
       </p>
     </div>
   </div>
 </div>
+<!-- Change your plan -->
+<div id="plan-options"class="reveal-modal" style="display: none" data-reveal>
+  <%= simple_form_for resource, :as => resource_name, :url => update_plan_path, :html => {:method => :put } do |f| %>
+    <div class="reveal-modal-header">
+      <a class="close-reveal-modal">&#215;</a>
+      <h3>Change Plan</h3>
+    </div>
+    <div class="reveal-modal-body">
+      <%= f.input :role, :collection => User::ROLES.delete_if {|i| i == 'admin' || i == 'moderator'}, :as => :radio_buttons, :label_method => lambda {|t| t.titleize}, :label => false, :item_wrapper_class => 'inline' %>
+    </div>
+    <div class="reveal-modal-footer">
+      <%= f.submit "Change Plan", :class => "button small radius" %>
+    </div>
+  <% end %>
+</div>
+<!-- Change your credit card info-->
+<div id="card-data"class="reveal-modal" style="display: none" data-reveal >
+  <%= simple_form_for resource, :as => resource_name, :url => update_card_path, :html => {:method => :put, :class => 'form-horizontal card_form' } do |f| %>
+    <div class="reveal-modal-header">
+      <a class="close-reveal-modal" >&#215;</a>
+      <h3>Change Credit Card</h3>
+    </div>
+    <div class="reveal-modal-body">
+      <div class="field">
+        <%= label_tag :card_number, "Credit Card Number" %>
+        <%= text_field_tag :card_number, nil, name: nil, placeholder: "**** **** **** ****", style: "width: 18em"  %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_code, "CVC" %>
+        <%= text_field_tag :card_code, nil, name: nil, style: "width: 3em", placeholder: "***", size: "3" %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_month, "Card Expiration" %>
+        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+      </div>
+      <%= f.hidden_field :username %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :stripe_token %>
+    </div>
+    <div class="reveal-modal-footer">
+      <%= f.submit "Change Credit Card", :class => "button small radius" %>
+  
+    </div>
+  <% end %>
+</div>
 
-<%= link_to "Back", :back %>
+
+

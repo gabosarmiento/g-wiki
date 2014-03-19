@@ -30,13 +30,22 @@ u.save
 u.update_attribute(:role, 'admin')
 
 u = User.new(
-  username: 'Client User',
-  email: 'client@example.com', 
+  username: 'Client basic',
+  email: 'clientbasic@example.com', 
   password: 'helloworld', 
   password_confirmation: 'helloworld')
 u.skip_confirmation!
 u.save
-u.update_attribute(:role, 'client')
+u.update_attribute(:role, 'basic')
+
+u = User.new(
+  username: 'Client pro',
+  email: 'clientpro@example.com', 
+  password: 'helloworld', 
+  password_confirmation: 'helloworld')
+u.skip_confirmation!
+u.save
+u.update_attribute(:role, 'pro')
 
 u = User.new(
   username: 'Moderator User',
@@ -54,7 +63,7 @@ u = User.new(
   password_confirmation: 'helloworld')
 u.skip_confirmation!
 u.save
-u.update_attribute(:role, 'member')
+u.update_attribute(:role, 'free')
 
 puts "Seed finished"
 puts "#{User.count} users created"

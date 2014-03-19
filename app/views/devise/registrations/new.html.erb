@@ -1,18 +1,48 @@
+<% content_for :head do %>
+  <%= tag :meta, :name => "stripe-key", :content =>  Rails.configuration.stripe[:publishable_key] %>
+<% end %>
+<div id="stripe_error" class="alert-box error" style="display:none" >
+</div>
 <h2>Sign up</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f| %>
+  <h3><%= params[:plan].titleize if params[:plan] %> Subscription Plan</h3>
+   <%= hidden_field_tag 'plan', params[:plan] %>
   <%= f.error_notification %>
-
+  <%= display_base_errors resource %>
   <div class="form-inputs">
     <%= f.input :username, :required => true, :autofocus => true %>
-    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :email, :required => true %>
     <%= f.input :password, :required => true %>
     <%= f.input :password_confirmation, :required => true %>
   </div>
+  <!-- Credit card data begin -->
+  <% if @user.stripe_token %>
+    <p>Credit card acceptance is pending.</p>
+  <% else %>
+    <%= image_tag "/assets/credit.png" %>
+    <div class="field">
+      <%= label_tag :card_number, "Credit Card Number" %>
+      <%= text_field_tag :card_number, nil, name: nil, placeholder: "**** **** **** ****", style: "width: 18em" %>
+    </div>
+    <div class="field">
+      <%= label_tag :card_code, "CVC"%>
+      <%= text_field_tag :card_code, nil, name: nil, style: "width: 3em", placeholder: "***", size: "3"  %>
+    </div>
 
+    <div class="field">
+      <%= label_tag :card_month, "Card Expiration" %>
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+    </div>
+
+  <div class="field">
+      <%= f.input :coupon, :label => 'Promotional Coupon (if any)' %>
+  </div>
+  <% end %>
+  <%= f.hidden_field :stripe_token %>
+  <!-- Credit card data end -->
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: 'button small radius' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>

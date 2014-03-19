@@ -7,7 +7,7 @@
   </li>
   <li>
     <div>
-      Keep things personal - Starting at $5/month
+      Keep things personal and private - Starting at $5/month
     </div>
   </li>
   <li>
@@ -15,5 +15,36 @@
       Advanced features such as Markdown posts, Revision history and unlimited data storage, all included!
     </div>
   </li>
-  <div class="row"><%= link_to "Sign Up", new_user_registration_path, class: 'button small radius' %> Today!</div>
 </ul>
+
+<div id="welcome" class="span7">
+  <h3>G-WIKI Subscriptions.</h3>
+</div>
+<div class="row">
+<div class="small-12 columns">
+  <div class="small-3 columns left">
+    <div class="plan"><h2>Free</h2></div>
+    <ul class="unstyled">
+      <li>No private wikis a month</li>
+    </ul>
+    <h3>$0/month</h3>
+    <%= link_to 'Subscribe', new_user_registration_path(:plan => 'free'), :class => 'button small radius' %>
+  </div>
+  <div class="small-3 columns left">
+    <div class="plan"><h2>Basic</h2></div>
+    <ul class="unstyled">
+      <li>5 private wikis a month</li>
+    </ul>
+    <h3>$5/month</h3>
+    <%= link_to 'Subscribe', new_user_registration_path(:plan => 'basic'), :class => 'button small radius' %>
+  </div>
+  <div class="small-3 columns left">
+    <div class="plan"><h2>Pro</h2></div>
+    <ul class="unstyled">
+      <li>Unlimited private wikis</li>
+    </ul>
+    <h3>$20/month</h3>
+    <%= link_to 'Subscribe',new_user_registration_path(:plan => 'pro'), :class => 'button small radius' %>
+  </div>
+</div>
+</div>

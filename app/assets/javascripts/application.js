@@ -34,7 +34,10 @@ $(document).ready(function(){
         $(".js-notes").slideUp().addClass('hide');
         document.getElementById("btnSave").disabled = false;
       });
-    
+
+    $('a.reveal-link').trigger('click');
+    $('a.close-reveal-modal').trigger('click');
+
 });
 
 
