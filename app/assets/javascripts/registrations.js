@@ -37,3 +37,6 @@ $('.registrations').ready(function() {
       return subscription.setupForm();
   });
 });
+  
+  
+    

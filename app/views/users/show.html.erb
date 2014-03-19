@@ -10,8 +10,8 @@
 
 <p> Private Wikis created <strong><%= link_to current_user.private_wikis, my_wikis_path %></strong></p>
  
-<p><%= link_to "Modify your user", edit_user_registration_path , class: 'button small radius' %></p>
-<% if can? :destroy, Wiki %>
+<p><%= link_to "Modify your Account", edit_user_registration_path , class: 'button small radius' %></p>
+
 <h5>Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %></h5> 
 <table>
     <% current_user.collaborations.each do |u| %>
@@ -20,5 +20,5 @@
     </tr>
     <% end %>
   </table>
-<% end %>
+
 

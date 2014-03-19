@@ -1,8 +1,6 @@
 <ul class="side-nav">
     <li><%= image_tag "/assets/logo-wiki.jpg" %></li>
-    <% if can? :create, @wiki %>
     <li><%= link_to "  Create Wiki", new_wiki_path, class: "button small radius fi-cloud" %></li>
-    <% end %>
     <% if current_user %>
     <li><%= link_to "My Wikis", my_wikis_path %></li>
     <% end %>

@@ -8,15 +8,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar, :provider, :uid, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon 
   before_save :update_stripe
-  # attr_accessible :title, :body
+  before_destroy :cancel_subscription
   has_many :wikis, dependent: :destroy
   has_many :sales
   has_many :collaborations
   has_many :users, :through => :collaborations
-  # before_create :set_member
-  #validates_numericality_of :price,
-    #greater_than: 49,
-    #message: "must be at least 50 cents"
 
   mount_uploader :avatar, AvatarUploader
 
@@ -46,6 +42,20 @@ class User < ActiveRecord::Base
     self.collaborations.where(id: wiki.id).first
   end
 
+  #Inform Stripe about a subscription plan change
+  def update_plan(role)
+    self.role = role
+    self.save
+    unless customer_id.nil?
+      customer = Stripe::Customer.retrieve(customer_id)
+      customer.update_subscription(:plan => role)
+    end
+    true
+  rescue Stripe::StripeError => e
+    logger.error "Stripe Error: " + e.message
+    errors.add :base, "Unable to update your subscription. #{e.message}."
+    false
+  end
   #Users with an “example.com” domain will not be added to Stripe as subscribers; they will only be added to the application database.
 
   def update_stripe
@@ -89,6 +99,23 @@ class User < ActiveRecord::Base
     self.stripe_token = nil
     false
   end
+  
+  #Cancel Subscription in stripe
+  def cancel_subscription
+    unless customer_id.nil?
+      customer = Stripe::Customer.retrieve(customer_id)
+      unless customer.nil? or customer.respond_to?('deleted')
+        if customer.subscription.status == 'active'
+          customer.cancel_subscription
+        end
+      end
+    end
+  rescue Stripe::StripeError => e
+    logger.error "Stripe Error: " + e.message
+    errors.add :base, "Unable to cancel your subscription. #{e.message}."
+    false
+  end
+
   # Count users private wikis
   def private_wikis
     self.wikis.where(:public => false).count
@@ -111,7 +138,6 @@ class User < ActiveRecord::Base
         0
     end
   end
-  private
    
 
 end
