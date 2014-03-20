@@ -7,7 +7,6 @@ class WikisController < ApplicationController
 
   def new
     @wiki = Wiki.new  
-    @stripe_btn_hash = stripe_btn_hash
     authorize! :create, Wiki, message: "You need to be a member to create a new wiki."
   end
 
@@ -20,7 +19,6 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    @stripe_btn_hash = stripe_btn_hash
     authorize! :edit, Wiki, message: "You need to be a member to update a new wiki."
   end
 
