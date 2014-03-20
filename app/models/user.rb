@@ -38,12 +38,9 @@ class User < ActiveRecord::Base
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
   end  
 
-  def collaborating(wiki)
-    self.collaborations.where(id: wiki.id).first
-  end
-
   #Inform Stripe about a subscription plan change
   def update_plan(role)
+    self.role = ''
     self.role = role
     self.save
     unless customer_id.nil?
@@ -60,7 +57,7 @@ class User < ActiveRecord::Base
 
   def update_stripe
     return if email.include?(ENV['ADMIN_EMAIL'])
-    return if email.include?('@example.com') #and not Rails.env.production?
+    return if email.include?('@example.com') and not Rails.env.production?
     if customer_id.nil?
       if !stripe_token.present?
         raise "Stripe token not present. Can't create account."

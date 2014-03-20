@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @plan = params[:plan]
-    if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"
+    if @plan && User::ROLES.include?(@plan) && @plan != "admin"
       super
     else
       redirect_to root_path, :notice => 'Please select a subscription plan below.'
@@ -36,7 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
     if params[:plan]
       resource.role = params[:plan]
+      resource.save
     end
   end
 end
-

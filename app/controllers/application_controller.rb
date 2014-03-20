@@ -25,17 +25,5 @@ class ApplicationController < ActionController::Base
   root_path
   end
 
-  def stripe_btn_hash
-    @stripe_btn_hash = {
-      src: "https://checkout.stripe.com/checkout.js", 
-      class: 'stripe-button',
-      data: {
-        key: "#{ Rails.configuration.stripe[:publishable_key] }",
-        description: "G-WIKI Membership - #{current_user.username}",
-        amount: 500 
-      }
-    }
-  end
-
 end
 

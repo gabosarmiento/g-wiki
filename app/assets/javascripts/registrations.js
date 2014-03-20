@@ -1,4 +1,4 @@
-$('.registrations').ready(function() {
+ $('.registrations').ready(function() {
   $.externalScript('https://js.stripe.com/v1/').done(function(script, textStatus) {
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
       var subscription = {
@@ -16,7 +16,7 @@ $('.registrations').ready(function() {
         processCard: function() {
           var card;
           card = {
-            name: $('#user_username').val(),
+            name: $('#user_name').val(),
             number: $('#card_number').val(),
             cvc: $('#card_code').val(),
             expMonth: $('#card_month').val(),
@@ -36,7 +36,4 @@ $('.registrations').ready(function() {
       };
       return subscription.setupForm();
   });
-});
-  
-  
-    
+});   
