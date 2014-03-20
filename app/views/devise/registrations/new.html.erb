@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= tag :meta, :name => "stripe-key", :content =>  ENV["STRIPE_PUBLISHABLE_KEY"] %>
+  <%= tag :meta, :name => "stripe-key", :content =>  Rails.configuration.stripe[:publishable_key] %>
 <% end %>
 <div id="stripe_error" class="alert-box error" style="display:none" >
 </div>

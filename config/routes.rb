@@ -18,7 +18,6 @@ GWiki::Application.routes.draw do
     end
     
   resources :my_wikis, only: [:index, :show]
-  resources :charges, only: [:new, :create]
 
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
