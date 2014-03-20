@@ -1,5 +1,3 @@
-
-<%= javascript_include_tag "epiceditor" %>
 <%= simple_form_for wiki do |f| %>
   <% if wiki.errors.any? %>
     <div class="alert">
@@ -100,3 +98,5 @@
   <%= f.submit "Save" , id:"btnSave", class: 'button radius small-offset-2' %>
   </div>
   <% end %>
+<%= javascript_include_tag "epiceditor" %>
+<%= javascript_include_tag "custom_editor" %>

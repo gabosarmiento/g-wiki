@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
     var opts = {
       container: 'epiceditor',
       textarea: 'wiki_body',
@@ -38,4 +38,4 @@ $(document).ready(function(){
     
     var editor = new EpicEditor(opts).load();
 
-  });
+  
