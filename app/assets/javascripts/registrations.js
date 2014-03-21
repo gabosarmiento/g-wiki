@@ -16,7 +16,7 @@
         processCard: function() {
           var card;
           card = {
-            name: $('#user_name').val(),
+            name: $('#user_username').val(),
             number: $('#card_number').val(),
             cvc: $('#card_code').val(),
             expMonth: $('#card_month').val(),

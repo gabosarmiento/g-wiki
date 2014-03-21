@@ -39,13 +39,12 @@ class User < ActiveRecord::Base
   end  
 
   #Inform Stripe about a subscription plan change
-  def update_plan(role)
-    self.role = ''
-    self.role = role
+  def update_plan(newrole)
+    self.role = newrole
     self.save
     unless customer_id.nil?
       customer = Stripe::Customer.retrieve(customer_id)
-      customer.update_subscription(:plan => role)
+      customer.update_subscription(:plan => newrole)
     end
     true
   rescue Stripe::StripeError => e
