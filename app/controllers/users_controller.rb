@@ -2,10 +2,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    authorize! :manage, User, :message => 'Need to be a member'
+    authorize! :read, User, :message => 'Need to be a member'
   end
 
   def update
+    authorize! :update, User, :message => 'You need to be an administrator to do that'
     @user = User.find(params[:id])
     role = params[:user][:role] unless params[:user][:role].nil?
     params[:user] = params[:user].except(:role)
