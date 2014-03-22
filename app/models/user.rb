@@ -9,10 +9,9 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon 
   before_save :update_stripe
   before_destroy :cancel_subscription
-  has_many :wikis, dependent: :destroy
   has_many :sales
   has_many :collaborations
-  has_many :users, :through => :collaborations
+  has_many :wikis, :through => :collaborations
 
   mount_uploader :avatar, AvatarUploader
 
@@ -41,11 +40,11 @@ class User < ActiveRecord::Base
   #Inform Stripe about a subscription plan change
   def update_plan(newrole)
     self.role = newrole
+    self.save
     unless customer_id.nil?
       customer = Stripe::Customer.retrieve(customer_id)
       customer.update_subscription(:plan => newrole)
     end
-    self.save
     true
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message

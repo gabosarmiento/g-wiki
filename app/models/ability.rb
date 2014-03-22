@@ -26,10 +26,6 @@ class Ability
     if user.role? :pro
         can :view, :pro
     end
-
-    if user.role? :admin
-        can :manage, :all
-    end
     
     can :read, Wiki, :public => true
   end
