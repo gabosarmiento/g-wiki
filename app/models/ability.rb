@@ -4,21 +4,22 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user
 
-    # if a member they can manage their own wikis or create new ones
     if user.role? :free
-        can :read, Wiki, {:user_id => user.id, :public => false}
+        can :read, Wiki, :public => false, :user_id => user.id
+        can :read, Wiki, :public => false, :collaborations => {:user_id => user.id}
         can :create, Wiki 
         can :destroy, Wiki, :user_id => user.id
-        can :update, Wiki
-        cannot :update, Wiki, :public => false 
-        cannot :create, Collaboration 
-        cannot :read, Collaboration
-        cannot :destroy, Collaboration 
+        can :update, Wiki, :public => true 
+        can :update, Wiki, :public => false, :user_id => user.id
+        can :manage, User, :user_id => user.id 
+        # cannot :manage, Collaboration
     end
 
-    # Clients can read their own private wikis
     if user.role? :basic
-        can :manage, Collaboration 
+        can :read, Collaboration, :user_id => user.id
+        can :create, Collaboration, :collaborations => { :user_id => user.id } 
+        can :destroy, Collaboration, :collaborations => { :user_id => user.id } 
+        can :manage, Wiki, :collaborations => { :user_id => user.id } 
         can :view, :basic
     end
 
@@ -26,16 +27,10 @@ class Ability
         can :view, :pro
     end
 
-    # Moderators can delete any wiki
-    if user.role? :moderator
-      can :destroy, Wiki
+    if user.role? :admin
+        can :manage, :all
     end
     
-    # Admins can do anything
-    if user.role? :admin
-      can :manage, :all
-    end
-
     can :read, Wiki, :public => true
   end
 end

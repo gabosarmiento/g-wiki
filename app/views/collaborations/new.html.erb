@@ -1,5 +1,4 @@
-<% if can? :manage, Wiki %>
-  <h1>Add collaborators</h1>
+ <h1>Add collaborators</h1>
 
   <%= simple_form_for @collaboration,  url: {action: "create"}, html: {class: "collaboration-form"} do |f| %>
   
@@ -8,4 +7,3 @@
 
     <%= f.submit "Save", class: "button small radius" %>
   <% end %>
-<% end %>

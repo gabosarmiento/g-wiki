@@ -1,6 +1,8 @@
-<table>
+<table class="responsive">
+<tbody>
 <% wikis.each do |wiki| %>
 <% if can? :read, wiki %>
+
 <tr>
   <td><%= link_to wiki.wikiname, wiki %></td>
   <% if can? :edit, wiki %>
@@ -9,4 +11,5 @@
 </tr>
 <% end %>
 <% end %>
+</tbody>
 </table>

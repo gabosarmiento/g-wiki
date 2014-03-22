@@ -3,21 +3,21 @@ class CollaborationsController < ApplicationController
   def index
     @wiki = Wiki.find(params[:wiki_id])
     @collaborations = Wiki.find(params[:wiki_id]).collaborations
-    
+    authorize! :read, Collaboration, message: "You are not allowed to see Collaborators."
   end
 
   def new
     @wiki = Wiki.find(params[:wiki_id])
     @collaboration = @wiki.collaborations.new
     @user = User.all
-    authorize! :create, Wiki, message: "You need to be a own this wiki to add a collaborator."
+    authorize! :create, Collaboration, message: "You are not allowed create Collaborators."
   end
 
   def create
     @wiki = Wiki.find(params[:wiki_id]) 
     @user = User.find(params[:collaboration][:user_id])
     @collaborations = @wiki.collaborations.create(user_id: @user.id)
-    authorize! :create, @wiki, message: "You need to be a own this wiki to add a collaborator."
+    authorize! :create, Collaboration, message: "You need to be a own this wiki to add a collaborator."
     if @collaborations.save
       flash[:notice] = "Collaborator was saved."
       redirect_to @wiki
@@ -29,7 +29,7 @@ class CollaborationsController < ApplicationController
 
   def destroy 
      @collaboration = Collaboration.find(params[:id])
-     authorize! :destroy, @collaboration, message: "You need to own the wiki to delete collaborators."
+      authorize! :destroy, Collaboration, message: "You need to own the wiki to delete collaborators."
     if @collaboration.destroy
       flash[:notice] = "Removed collaborator"
       redirect_to :back

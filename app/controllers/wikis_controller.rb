@@ -3,15 +3,17 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.visible_to(current_user)
+    authorize! :read, Wiki, message: "You can't see private wikis"
   end
 
   def new
     @wiki = Wiki.new  
-    authorize! :create, Wiki, message: "You need to be a member to create a new wiki."
+    authorize! :create, @wiki, message: "You need to be a member to create a new wiki."
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize! :read, @wiki, message: "You are not allowed to see this private wiki."
     if request.path != wiki_path(@wiki)
       redirect_to @wiki, status: :moved_permanently
     end

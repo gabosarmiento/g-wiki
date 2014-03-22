@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  ROLES = %w[free basic pro moderator admin]
+  ROLES = %w[free basic pro admin]
   def role?(base_role)
     role.nil? ? false : ROLES.index(base_role.to_s) <= ROLES.index(role)
   end  
@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
   #Inform Stripe about a subscription plan change
   def update_plan(newrole)
     self.role = newrole
-    self.save
     unless customer_id.nil?
       customer = Stripe::Customer.retrieve(customer_id)
       customer.update_subscription(:plan => newrole)
     end
+    self.save
     true
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message

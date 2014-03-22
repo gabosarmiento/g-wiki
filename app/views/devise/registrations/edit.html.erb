@@ -88,7 +88,7 @@
       <h3>Change Plan</h3>
     </div>
     <div class="reveal-modal-body">
-      <%= f.input :role, :collection => User::ROLES.delete_if {|i| i == 'admin' || i == 'moderator'}, :as => :radio_buttons, :label_method => lambda {|t| t.titleize}, :label => false, :item_wrapper_class => 'inline' %>
+      <%= f.input :role, :collection => User::ROLES.delete_if {|i| i == 'admin' }, :as => :radio_buttons, :label_method => lambda {|t| t.titleize}, :label => false, :item_wrapper_class => 'inline' %>
     </div>
     <div class="reveal-modal-footer">
       <%= f.submit "Change Plan", :class => "button small radius" %>

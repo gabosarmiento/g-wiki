@@ -48,15 +48,6 @@ u.save
 u.update_attribute(:role, 'pro')
 
 u = User.new(
-  username: 'Moderator User',
-  email: 'moderator@example.com', 
-  password: 'helloworld', 
-  password_confirmation: 'helloworld')
-u.skip_confirmation!
-u.save
-u.update_attribute(:role, 'moderator')
-
-u = User.new(
   username: 'Member User',
   email: 'member@example.com', 
   password: 'helloworld', 

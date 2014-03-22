@@ -7,4 +7,4 @@ Last updated <%= time_ago_in_words(@wiki.updated_at) %> ago<br/>
 <% end %>
 <h3><%= markdown @wiki.description %></h3>
 <p><%= markdown @wiki.body %></p>
-<%= link_to "Back", :back %>
+<%= link_to "Back", :back, class: "button secondary radius"%>

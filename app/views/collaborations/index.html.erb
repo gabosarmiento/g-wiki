@@ -1,7 +1,9 @@
 <h3>Collaborators</h3>
+<% if can? :create, Collaboration %>
 <div class="row">
-<%= link_to "Add existing members", new_wiki_collaboration_path , class: 'button small radius' %>
+<%= link_to "Add collaborators", new_wiki_collaboration_path , class: 'button small radius' %>
 </div>
+<% end %>
 <table>
 <% @collaborations.each do |collaboration| %>
 <tr>
@@ -11,3 +13,5 @@
 </tr>
 <% end %>
 </table>
+<hr>
+<%= link_to "Back", :back, class: "button secondary small radius" %>

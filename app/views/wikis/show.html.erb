@@ -1,15 +1,19 @@
-<h1><%= @wiki.wikiname %></h1>
-  Last updated <%= time_ago_in_words(@wiki.updated_at) %> ago <br/>
+<h2><span><%= @wiki.wikiname %></span></h2>
+<span><%= @wiki.description %></span>
+<hr>
+
 <% if can? :edit, Wiki %>
-<%= link_to "Edit", edit_wiki_path(@wiki), class: 'button small radius' %>
-<% end %>
-<% if can? :destroy, @wiki %>
-  <td><%= link_to " Delete", @wiki , method: :delete, confirm: 'Are you sure you want to delete this Wiki?', class: 'button small radius'  %></td>
-  <% end %>
-<% if can? :destroy, @wiki #proxy for clients only %>
-<%= link_to "Collaborators", wiki_collaborations_path(@wiki), class: 'button small radius' %>
+<span><%= link_to "Edit", edit_wiki_path(@wiki), class: 'button small radius' %></span>
 <% end %>
 
-<h3><%= markdown @wiki.description %></h3>
+<% if can? :destroy, @wiki %>
+<span><%= link_to " Delete", @wiki , method: :delete, confirm: 'Are you sure you want to delete this Wiki?', class: 'button small alert radius'  %></span>
+  <% end %>
+  
+<% if can? :create, Collaboration %>
+<span><%= link_to "Collaborators", wiki_collaborations_path(@wiki), class: 'button small radius' %></span>
+<% end %>
+Last update <%= time_ago_in_words(@wiki.updated_at) %> ago
 <p><%= markdown @wiki.body %></p>
-<%= link_to "Back", :back %>
+<hr>
+<%= link_to "Back", :back, class: "button secondary small radius" %>
