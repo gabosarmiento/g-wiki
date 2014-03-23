@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessor :stripe_token, :coupon 
 
   before_save :update_stripe #comment to seed db
-  
+
   before_destroy :cancel_subscription
   has_many :wikis, dependent: :destroy
   has_many :sales

@@ -8,10 +8,20 @@ class Wiki < ActiveRecord::Base
   extend FriendlyId
   friendly_id :wikiname, use: [:slugged, :history]
 
+  #Tire for Elastic Search
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  def self.search(params)
+  tire.search(load: true) do
+    query { string params[:query]} if params[:query].present?
+    end
+  end
+
   validates :wikiname, length: { minimum: 5 }, presence: true
   validates :description, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
   validates :user, presence: true  
-  private
+  
 
 end

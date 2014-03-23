@@ -11,12 +11,12 @@
   <% end %>
   <%= control_group_tag(wiki.errors[:wikiname]) do %>
   <div class="row"> 
-    <div class="small-8">
+    <div class="large-9 small-9">
       <div class="row control-group">
-        <div class="small-3 columns">
+        <div class="large-3 small-3 columns">
           <%= f.label :wikiname, class: 'control-label right inline' %>
         </div>
-        <div class="controls small-9 columns">
+        <div class="controls large-9 small-9 columns">
           <%= f.text_field :wikiname, id:"right-label", placeholder: "Write the title" %>
         </div>
       </div>
@@ -25,12 +25,12 @@
   <% end %>
   <%= control_group_tag(wiki.errors[:description]) do %>
   <div class="row"> 
-    <div class="small-8">
+    <div class="large-9 small-9">
       <div class="row control-group">
-        <div class="controls small-3 columns">
+        <div class="large-3 small-3 columns">
         <%= f.label :description, class: 'control-label right inline'  %>
         </div>
-        <div class="small-9 columns">
+        <div class="controls large-9 small-9 columns">
           <%= f.text_field :description, id:"right-label", placeholder: "Write the description" %>
         </div>
       </div>
@@ -40,13 +40,13 @@
 
   <%= control_group_tag(wiki.errors[:body]) do %>
   <div class="row">
-    <div class="small-8">
+    <div class="large-9 small-9">
       <div class="row control-group">
-        <div class="controls small-3 columns">
+        <div class="large-3 small-3 columns">
         <%= f.label :body, class: 'control-label right inline'  %>
         </div>
         
-        <div class="small-9 columns">
+        <div class="controls large-9 small-9 columns">
           <div id="epiceditor"></div>
         <%= f.text_area :body, style:"display:none" %>
         </div>
@@ -56,7 +56,7 @@
   <% end %>
 
   <div class="row"> 
-    <div class="small-8">
+    <div class="large-9 small-9">
         <div class="row control-group">
           <div class="small-3 columns">
           </div>
@@ -69,7 +69,7 @@
     </div>
 
    <div class="row"> 
-    <div class="small-8">
+    <div class="large-9 small-9">
         <div class="row control-group">
             <div class="small-3 columns">
             </div>

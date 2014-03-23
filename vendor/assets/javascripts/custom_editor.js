@@ -19,7 +19,7 @@
       },
       button: {
         preview: true,
-        fullscreen: false,
+        fullscreen: true,
         bar: "auto"
       },
       focusOnLoad: false,
