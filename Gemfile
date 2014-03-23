@@ -8,7 +8,7 @@ gem 'rails', '3.2.16'
 group :production do
   gem 'pg'
 end
-
+  
 group :development do
   gem 'sqlite3'
   gem 'rails_best_practices'
@@ -61,6 +61,10 @@ gem 'omniauth-facebook'
 gem "friendly_id", "~> 4.0.10"
 
 gem "haml-rails"
+
+gem 'tire'
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
