@@ -11,10 +11,11 @@ rand(4..10).times do
   u.save
 
   rand(5..15).times do
-    w = u.wikis.create(
+    w = Wiki.create(
       wikiname: Faker::Lorem.words(rand(1..10)).join(" "), 
       description: Faker::Lorem.words(rand(4..15)).join(" "), 
-      body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"))
+      body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"),
+      user_id: u.id)
     w.update_attribute(:created_at, Time.now - rand(600..31536000))
   end 
 end

@@ -1,5 +1,5 @@
 class Wiki < ActiveRecord::Base
-  attr_accessible :wikiname, :description, :body, :public
+  attr_accessible :wikiname, :description, :body, :user_id, :public
   belongs_to :user
   has_many :collaborations
   has_many :users, :through => :collaborations

@@ -7,11 +7,14 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar, :provider, :uid, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon 
-  before_save :update_stripe
+
+  before_save :update_stripe #comment to seed db
+  
   before_destroy :cancel_subscription
+  has_many :wikis, dependent: :destroy
   has_many :sales
   has_many :collaborations
-  has_many :wikis, :through => :collaborations
+  has_many :users, :through => :collaborations
 
   mount_uploader :avatar, AvatarUploader
 
