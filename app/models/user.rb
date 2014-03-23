@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar, :provider, :uid, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon 
-  has_many :wikis, dependent: :destroy
   before_save :update_stripe
   before_destroy :cancel_subscription
+  has_many :wikis, dependent: :destroy
   has_many :sales
   has_many :collaborations
   has_many :wikis, :through => :collaborations
