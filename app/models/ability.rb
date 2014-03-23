@@ -12,12 +12,12 @@ class Ability
         can :update, Wiki, :public => true 
         can :update, Wiki, :public => false, :user_id => user.id
         can :manage, User, :user_id => user.id 
-        can :read, Collaboration, :user_id => user.id
+        can :read, Collaboration, :collaborations => { :user_id => user.id }
         # cannot :manage, Collaboration
     end
 
     if user.role? :basic
-        can :read, Collaboration, :user_id => user.id
+        can :read, Collaboration, :collaborations => { :user_id => user.id }
         can :create, Collaboration, :collaborations => { :user_id => user.id } 
         can :destroy, Collaboration, :collaborations => { :user_id => user.id } 
         # can :manage, Wiki, :collaborations => { :user_id => user.id } 
