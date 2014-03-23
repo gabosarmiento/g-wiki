@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   before_destroy :cancel_subscription
   has_many :wikis, dependent: :destroy
   has_many :sales
-  has_many :collaborations
+  has_many :collaborations, dependent: :destroy 
   has_many :users, :through => :collaborations
 
   mount_uploader :avatar, AvatarUploader

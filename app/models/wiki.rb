@@ -2,7 +2,7 @@ class Wiki < ActiveRecord::Base
   has_paper_trail
   attr_accessible :wikiname, :description, :body, :user_id, :public
   belongs_to :user
-  has_many :collaborations
+  has_many :collaborations, dependent: :destroy 
   has_many :users, :through => :collaborations
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) } 
 

@@ -9,7 +9,9 @@
 <tr>
   <td> <%= collaboration.user.username %></td>
   <td> <%= collaboration.user.email %></td>
+  <% if can? :delete, Collaboration %>
   <td><%= link_to "delete",  wiki_collaboration_path(@wiki, collaboration) , method: :delete, confirm: 'Are you sure you want to delete this collaborator?' %></td>
+  <% end %>
 </tr>
 <% end %>
 </table>
