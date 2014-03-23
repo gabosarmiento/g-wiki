@@ -29,10 +29,12 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = current_user.wikis.build(params[:wiki])
+    @wiki = current_user.wikis.build(params[:wiki], load: true)
     authorize! :create, @wiki, message: "You need to have a subscription to do that."
     if @wiki.save
-      flash[:notice] = "Wiki was saved."
+      name = @wiki.wikiname
+      undo_link = view_context.link_to("undo \"#{name}\"", uncreate_version_path(@wiki.versions.scoped.last), :method => :post)
+      flash[:notice] = "Wiki was saved. #{undo_link}"
       redirect_to @wiki
     else
     flash[:error] = "There was an error saving the wiki. Please try again."
@@ -45,7 +47,7 @@ class WikisController < ApplicationController
     authorize! :update, @wiki, message: "You need to be signed up to do that."
     if @wiki.update_attributes(params[:wiki])
       #@wiki.update_attribute(:user_id, current_user.id ) # an User could own someone else's wiki by modifying it
-      flash[:notice] = "Wiki was updated."
+      flash[:notice] = "Wiki was updated. #{undo_link}"
       redirect_to @wiki
     else
       flash[:error] = "There was an error saving the wiki. Please try again."
@@ -59,7 +61,7 @@ class WikisController < ApplicationController
     name = @wiki.wikiname
     authorize! :destroy, @wiki, message: "You need to own the wiki to delete it."
     if @wiki.destroy
-      flash[:notice] = "\"#{name}\" was deleted successfully."
+      flash[:notice] = "\"#{name}\" was deleted successfully. #{undo_link}"
       redirect_to wikis_path
     else
       flash[:error] = "There was an error deleting the wiki."
@@ -67,6 +69,8 @@ class WikisController < ApplicationController
     end
   end
 
-  def hide
+  private
+  def undo_link
+  view_context.link_to("undo", revert_version_path(@wiki.versions.scoped.last), :method => :post)
   end
 end

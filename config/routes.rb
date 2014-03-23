@@ -19,6 +19,9 @@ GWiki::Application.routes.draw do
     
   resources :my_wikis, only: [:index, :show]
 
+  match "versions/:id/revert" => "versions#revert", via: :post, :as => "revert_version"
+  match "versions/:id/uncreate" => "versions#uncreate", via: :post, :as => "uncreate_version"
+
   match "about" => 'welcome#about', via: :get
   match "support" => 'welcome#support', via: :get
   

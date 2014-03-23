@@ -149,6 +149,9 @@ GEM
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paper_trail (3.0.1)
+      activerecord (>= 3.0, < 5.0)
+      activesupport (>= 3.0, < 5.0)
     pg (0.17.1)
     polyglot (0.3.4)
     rack (1.4.5)
@@ -276,6 +279,7 @@ DEPENDENCIES
   modernizr-rails
   newrelic_rpm
   omniauth-facebook
+  paper_trail
   pg
   rails (= 3.2.16)
   rails_best_practices

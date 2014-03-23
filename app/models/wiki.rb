@@ -1,16 +1,18 @@
 class Wiki < ActiveRecord::Base
+  has_paper_trail
   attr_accessible :wikiname, :description, :body, :user_id, :public
   belongs_to :user
   has_many :collaborations
   has_many :users, :through => :collaborations
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) } 
 
+  #FriendlyID for nice looking urls
   extend FriendlyId
   friendly_id :wikiname, use: [:slugged, :history]
 
   #Tire for Elastic Search
   include Tire::Model::Search
-  include Tire::Model::Callbacks
+  include Tire::Model::Callbacks 
 
   # def self.search(params)
   # tire.search(load: true) do

@@ -19,7 +19,7 @@
 $(function(){ $(document).foundation(); });
 
 $(document).ready(function(){
-  $(".alert-box").delay(1500).fadeOut(2000); 
+  $(".alert-box").delay(5500).fadeOut(2000); 
 
   $("#wiki_public_false").click(function() {
         $(".js-notes").slideDown().removeClass('hide');

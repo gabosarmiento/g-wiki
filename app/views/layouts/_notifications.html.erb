@@ -1,16 +1,8 @@
-<% if flash[:notice] %>
-  <div data-alert class="alert-box info radius">
-    <%= flash[:notice] %>
-    <a href='#' class="close">&times;</a>
-  </div>
-<% elsif flash[:error] %>
-  <div data-alert class="alert-box error radius">
-    <%= flash[:error] %>
-    <a href='#' class="close">&times;</a>
-  </div>
-<% elsif flash[:alert] %>
-  <div data-alert class="alert-box warning radius">
-    <%= flash[:alert] %>
-    <a href='#' class="close">&times;</a>
-  </div>
-<% end %>
+<% flash.each do |name, msg| -%>
+  <% if msg.is_a?(String) %>
+    <div data-alert class="alert-box radius <%= name == :notice ? "info" : "alert" %>">
+      <%= content_tag :div, raw(msg) %>
+      <a href='#' class="close">&times;</a>
+    </div>
+    <% end %>
+  <% end %>

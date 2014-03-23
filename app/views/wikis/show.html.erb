@@ -7,7 +7,7 @@
 <% end %>
 
 <% if can? :destroy, @wiki %>
-<span><%= link_to " Delete", @wiki , method: :delete, confirm: 'Are you sure you want to delete this Wiki?', class: 'button small alert radius'  %></span>
+<span><%= link_to " Delete", @wiki , method: :delete, class: 'button small alert radius'  %></span>
   <% end %>
   
 <% if can? :create, Collaboration %>
