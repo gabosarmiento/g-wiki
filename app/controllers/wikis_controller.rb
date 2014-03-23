@@ -2,7 +2,11 @@ class WikisController < ApplicationController
   respond_to :html, :js
 
   def index
-    @wikis = Wiki.visible_to(current_user).search(params)
+    if params[:query].present?
+      @wikis = Wiki.visible_to(current_user).search(params[:query])
+    else
+      @wikis = Wiki.visible_to(current_user)
+    end 
     authorize! :read, Wiki, message: "You can't see private wikis"
   end
 

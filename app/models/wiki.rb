@@ -12,11 +12,11 @@ class Wiki < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  def self.search(params)
-  tire.search(load: true) do
-    query { string params[:query]} if params[:query].present?
-    end
-  end
+  # def self.search(params)
+  # tire.search(load: true) do
+  #   query { string params[:query]} if params[:query].present?
+  #   end
+  # end
 
   validates :wikiname, length: { minimum: 5 }, presence: true
   validates :description, length: { minimum: 5 }, presence: true
