@@ -20,31 +20,38 @@
 <div id="welcome" class="span7">
   <h3>G-WIKI Subscriptions.</h3>
 </div>
+
 <div class="row">
-<div class="small-12 columns">
-  <div class="small-3 columns left">
-    <div class="plan"><h2>Free</h2></div>
-    <ul class="unstyled">
-      <li>No private wikis a month</li>
-    </ul>
-    <h3>$0/month</h3>
-    <%= link_to 'Subscribe', new_user_registration_path(:plan => 'free'), :class => 'button small radius' %>
+  <div class="large-12 columns">
+    <div class="large-4 columns">
+      <ul class="pricing-table">
+        <li class="title">Free Plan</li>
+        <li class="description">Requires credit card authentication.</li>
+        <li class="bullet-item">Unlimited public wikis</li>
+        <li class="bullet-item">1 private wiki a month</li>
+        <li class="price"><small>$0.00/month</small></li>
+        <li class="cta-button"> <%= link_to 'Try Now', new_user_registration_path(:plan => 'free'), :class => 'button small radius' %></li>
+      </ul>
+    </div>
+    <div class="large-4 columns">
+      <ul class="pricing-table">
+        <li class="title">Basic</li>
+        <li class="description">Requires credit card authentication.</li>
+        <li class="bullet-item">Unlimited public wikis</li>
+        <li class="bullet-item">20 private wikis a month</li>
+        <li class="price"><small>$8.99/month</small></li>
+        <li class="cta-button"> <%= link_to 'Buy Now', new_user_registration_path(:plan => 'basic'), :class => 'button small radius' %></li>
+      </ul>
+    </div>
+    <div class="large-4 columns">
+      <ul class="pricing-table">
+        <li class="title">Pro</li>
+        <li class="description">Requires credit card authentication.</li>
+        <li class="bullet-item">∞ public wikis</li>
+        <li class="bullet-item">∞ wikis a month</li>
+        <li class="price"><small>$19.99/month</small></li>
+        <li class="cta-button"> <%= link_to 'Buy Now', new_user_registration_path(:plan => 'basic'), :class => 'button small radius' %></li>
+      </ul>
+    </div>
   </div>
-  <div class="small-3 columns left">
-    <div class="plan"><h2>Basic</h2></div>
-    <ul class="unstyled">
-      <li>5 private wikis a month</li>
-    </ul>
-    <h3>$5/month</h3>
-    <%= link_to 'Subscribe', new_user_registration_path(:plan => 'basic'), :class => 'button small radius' %>
-  </div>
-  <div class="small-3 columns left">
-    <div class="plan"><h2>Pro</h2></div>
-    <ul class="unstyled">
-      <li>Unlimited private wikis</li>
-    </ul>
-    <h3>$20/month</h3>
-    <%= link_to 'Subscribe',new_user_registration_path(:plan => 'pro'), :class => 'button small radius' %>
-  </div>
-</div>
 </div>

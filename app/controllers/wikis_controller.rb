@@ -3,7 +3,7 @@ class WikisController < ApplicationController
 
   def index
     if params[:query].present?
-      @wikis = Wiki.visible_to(current_user).search(params[:query])
+      @wikis = Wiki.search(params[:query], load: true)
     else
       @wikis = Wiki.visible_to(current_user)
     end 
@@ -38,15 +38,13 @@ class WikisController < ApplicationController
     flash[:error] = "There was an error saving the wiki. Please try again."
     render :new
     end
-
-    
   end
 
   def update
     @wiki = Wiki.find(params[:id])
     authorize! :update, @wiki, message: "You need to be signed up to do that."
     if @wiki.update_attributes(params[:wiki])
-      #@wiki.update_attribute(:user_id, current_user.id ) => an User could own someone else's wiki by modifying it
+      #@wiki.update_attribute(:user_id, current_user.id ) # an User could own someone else's wiki by modifying it
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else

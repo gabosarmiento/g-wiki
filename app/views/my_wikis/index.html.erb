@@ -1,7 +1,11 @@
-<h1>My Wikis</h1>
+
+<h1>All My Wikis</h1>
+<hr>
 <%= render partial: 'wikis/wikis', locals: { wikis: @wikis } %> 
 
 <% if current_user.private_wikis > 0 %>
-<h1>My Private Wikis</h1>
+
+<h3>My Private Wikis</h3>
+<hr>
 <%= render partial: 'wikis/wikis', locals: { wikis: @pwikis } %> 
 <% end %>

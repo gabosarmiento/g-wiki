@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     params[:user] = params[:user].except(:role)
     if @user.update_attributes(params[:user])
       @user.update_plan(role) unless role.nil?
-      redirect_to users_path, :notice => "User updated."
+      redirect_to user_path, :notice => "User updated."
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      redirect_to user_path, :alert => "Unable to update user."
     end
   end
 end

@@ -10,16 +10,16 @@
     
     <% if current_user %>
     <li>
-        <i data-tooltip class="tip-left radius" title="Account Settings">
+        <span data-tooltip data-options="disable_for_touch:true" class="tip-left radius" title="Account Settings">
         <%= link_to user_path(current_user), class: 'secondary small button radius' do%> 
         <i class="fi-widget large"></i>
         <% end %>
-        </i>
-        <i data-tooltip class="tip-right radius" title="logout <%=current_user.email %>">
+        </span>
+        <span data-tooltip data-options="disable_for_touch:true" class="tip-right radius " title="logout <%=current_user.email %>">
         <%= link_to destroy_user_session_path, method: :delete, class: 'secondary small button radius' do%> 
         <i class="fi-power large"></i>
         <% end %>
-        </i>
+        </span>
     <% end %>
     </li>
 </ul>

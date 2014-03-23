@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
       when 'free'
         1
       when 'basic'
-        5
+        20
       when 'pro'
         100000
       else

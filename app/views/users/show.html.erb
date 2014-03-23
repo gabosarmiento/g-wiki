@@ -3,22 +3,30 @@
   <div id="avatar" class="right">
         <%= image_tag current_user.avatar.url, class: 'img-circle' %>
   </div>
-      <% end %>
-<p> Member since <strong><%= time_ago_in_words(current_user.created_at) %> </strong></p>
-<p> Priviledges as <strong><%= current_user.role %> </strong></p>
-<p> Wikis created <strong><%= link_to current_user.wikis.count, my_wikis_path %></strong></p>
+  <% end %>
+<ul class="square">
+<li> Member since <strong><%= time_ago_in_words(current_user.created_at) %> </strong></li>
+<li> Priviledges as <strong><%= current_user.role %> </strong></li>
+<li> Wikis created  <span class="round secondary label"><strong><%= link_to current_user.wikis.count, my_wikis_path %></strong></span></li>
+<li> Private Wikis created <span class="round secondary label"><strong><%= link_to current_user.private_wikis, my_wikis_path %></strong></span></li>
+</ul>
+<%= link_to "Modify your Account", edit_user_registration_path , class: 'alert button small radius' %>
+<hr>
 
-<p> Private Wikis created <strong><%= link_to current_user.private_wikis, my_wikis_path %></strong></p>
- 
-<p><%= link_to "Modify your Account", edit_user_registration_path , class: 'button small radius' %></p>
-
-<h5>Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %></h5> 
+<h3>Collaborating in <%= pluralize(current_user.collaborations.length, "Wiki") %></h3> 
+<% if current_user.collaborations.count > 0 %>
 <table>
+  <thead>
+    <tr>
+      <th width="400">Wikiname</th>
+    </tr>
+  </thead>
+  <tbody>
     <% current_user.collaborations.each do |u| %>
     <tr>
       <td><%= link_to Wiki.find(u[:wiki_id]).wikiname , wiki_path(u[:wiki_id]) %></td>
     </tr>
     <% end %>
+  </tbody>
+  <% end %>
   </table>
-
-
