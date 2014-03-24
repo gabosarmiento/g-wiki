@@ -14,7 +14,8 @@ rand(4..10).times do
     w = u.wikis.create(
       wikiname: Faker::Lorem.words(rand(1..10)).join(" "), 
       description: Faker::Lorem.words(rand(4..15)).join(" "), 
-      body: Faker::Lorem.paragraphs(rand(1..4)).join("\n")
+      body: Faker::Lorem.paragraphs(rand(1..4)).join("\n"),
+      tag_list: Faker::Lorem.words(rand(2..5)).join(",")
       )
     w.update_attribute(:created_at, Time.now - rand(600..31536000))
     w.update_attribute(:public, true)
