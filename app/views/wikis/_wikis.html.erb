@@ -3,9 +3,8 @@
   <tr>
       <th width="200">Wikiname</th>
       <th width="250">Description</th>
-      <th width="130">Latest Modification</th>
-      <th width="100">Contribute</th>
-      
+      <th width="130">Update</th>
+      <th width="100">Tags</th>
     </tr>
 </thead>
 <tbody>
@@ -15,7 +14,7 @@
   <td><%= link_to wiki.wikiname, wiki %></td>
   <td><%= wiki.description %></td>
   <td><%= time_ago_in_words(wiki.updated_at) %></td>
-  <td><%= link_to "Edit", edit_wiki_path(wiki) %></td>
+  <td><%= raw wiki.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
 </tr>
 <% end %>
 <% end %>

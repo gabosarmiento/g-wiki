@@ -6,6 +6,7 @@ GWiki::Application.routes.draw do
     root :to => 'welcome#index'
   end
   root to: 'welcome#index'
+  get 'tags/:tag', to: 'wikis#index', as: :tag
   resources :sales
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
   devise_scope :user do

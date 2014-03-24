@@ -1,3 +1,9 @@
 <h1>All Wikis</h1>
-
+<h4>Hot Topics</h4>
+    <span class="box" id="tag_cloud">
+  <% tag_cloud Wiki.tag_counts, %w{s m l} do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</span>
+<hr>
 <%= render partial: 'wikis/wikis', locals: { wikis: @wikis } %> 

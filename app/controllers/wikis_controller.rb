@@ -4,6 +4,8 @@ class WikisController < ApplicationController
   def index
     if params[:query].present?
       @wikis = Wiki.search(params[:query], load: true)
+    elsif params[:tag]
+      @wikis = Wiki.visible_to(current_user).tagged_with(params[:tag])
     else
       @wikis = Wiki.visible_to(current_user)
     end 

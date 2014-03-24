@@ -1,6 +1,7 @@
 class Wiki < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :wikiname, :description, :body, :user_id, :public
+  acts_as_taggable
+  attr_accessible :wikiname, :description, :body, :user_id, :public, :tag_list
   belongs_to :user
   has_many :collaborations, dependent: :destroy 
   has_many :users, :through => :collaborations
