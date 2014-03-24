@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
   end
 
   # User with a free plan can create 1 private wiki, 
-  # with a basic plan can create 5 wikis,
+  # with a basic plan can create 20 wikis,
   # with a pro plan can create unlimited private wikis
   def wiki_limit
     case self.role

@@ -48,6 +48,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize! :update, @wiki, message: "You need to be signed up to do that."
     if @wiki.update_attributes(params[:wiki])
+      @wiki.create_activity :update, owner: current_user
       #@wiki.update_attribute(:user_id, current_user.id ) # an User could own someone else's wiki by modifying it
       flash[:notice] = "Wiki was updated. #{undo_link}"
       redirect_to @wiki
@@ -63,6 +64,7 @@ class WikisController < ApplicationController
     name = @wiki.wikiname
     authorize! :destroy, @wiki, message: "You need to own the wiki to delete it."
     if @wiki.destroy
+      @wiki.create_activity :destroy, owner: current_user
       flash[:notice] = "\"#{name}\" was deleted successfully. #{undo_link}"
       redirect_to wikis_path
     else

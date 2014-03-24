@@ -1,6 +1,9 @@
 class Wiki < ActiveRecord::Base
   has_paper_trail
   acts_as_taggable
+  include PublicActivity::Common
+  #scope :collaboration_instance, lambda {|w_id, u_id| where("collaborations.wiki_id = ? && collaborations.user_id = ?", w_id, u_id)}
+  # tracked owner: ->(controller, model) { controller && controller.current_user }
   attr_accessible :wikiname, :description, :body, :user_id, :public, :tag_list
   belongs_to :user
   has_many :collaborations, dependent: :destroy 
