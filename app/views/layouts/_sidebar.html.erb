@@ -1,6 +1,6 @@
 <ul class="side-nav">
-    <li><%= image_tag "/assets/logo-wiki.png" %></li>
-    <li><%= link_to "  Create Wiki", new_wiki_path, class: "button radius fi-cloud" %></li>
+    <li><%= image_tag "/assets/logo-wiki.png", style: "display:block;margin:auto;" %></li>
+    <li><%= link_to "  Create Wiki", new_wiki_path, class: "button radius fi-cloud", style: "display:block;margin:auto;" %></li>
     <% if current_user %>
     <li><%= link_to "Dashboard", "#" %></li>
     <li><%= link_to "My Wikis", my_wikis_path %></li>

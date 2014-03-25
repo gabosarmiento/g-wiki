@@ -3,21 +3,21 @@ class CollaborationsController < ApplicationController
   def index
     @wiki = Wiki.find(params[:wiki_id])
     @collaborations = Wiki.find(params[:wiki_id]).collaborations
-    authorize! :read, Collaboration, message: "You are not allowed to see Collaborators."
+    authorize! :read, @wiki, message: "You are not allowed to see Collaborators."
   end
 
   def new
     @wiki = Wiki.find(params[:wiki_id])
     @collaboration = @wiki.collaborations.new
     @user = User.all
-    authorize! :create, Collaboration, message: "You are not allowed create Collaborators."
+    authorize! :destroy, @wiki, message: "You are not allowed create Collaborators."
   end
 
   def create
     @wiki = Wiki.find(params[:wiki_id]) 
     @user = User.find(params[:collaboration][:user_id])
     @collaborations = @wiki.collaborations.create(user_id: @user.id)
-    authorize! :create, Collaboration, message: "You need to be a own this wiki to add a collaborator."
+    authorize! :destroy, @wiki, message: "You need to be a own this wiki to add a collaborator."
     if @collaborations.save
       flash[:notice] = "Collaborator was saved."
       redirect_to @wiki

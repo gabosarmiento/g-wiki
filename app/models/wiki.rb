@@ -8,7 +8,7 @@ class Wiki < ActiveRecord::Base
   has_many :collaborations, dependent: :destroy 
   has_many :users, :through => :collaborations
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) } 
-  scope :hidden_to, lambda  { |user| where(public: false) } 
+  scope :invisible_to, lambda  { |user| where(public: false) } 
   
   #FriendlyID for nice looking urls
   extend FriendlyId
@@ -20,15 +20,18 @@ class Wiki < ActiveRecord::Base
   
   #Checks if an user is a Collaborator for a wiki
   def is_collaborator?(user)
-    self.collaborations.each do |c|
-     if c.user_id == user.id
-       return true
-     elsif c.user_id != user.id
-       return false 
-     end
-    end
-  end  
-
+    if self.collaborations.empty?
+      return false
+    else
+      self.collaborations.each do |c|
+        if c.user_id == user.id
+          return true
+        elsif c.user_id != user.id
+          return false 
+        end
+      end
+    end  
+  end
     # def self.search(params)
   # tire.search(load: true) do
   #   query { string params[:query]} if params[:query].present?

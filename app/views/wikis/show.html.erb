@@ -10,7 +10,7 @@
 <span><%= link_to " Delete", @wiki , method: :delete, class: 'button small alert radius'  %></span>
   <% end %>
   
-<% if can? :read, Collaboration %>
+<% if can? :read, Wiki %>
 <span><%= link_to "Collaborators", wiki_collaborations_path(@wiki), class: 'button small radius' %></span>
 <% end %>
 Last update <%= time_ago_in_words(@wiki.updated_at) %> ago
