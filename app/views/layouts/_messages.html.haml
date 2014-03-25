@@ -1,0 +1,6 @@
+-# Rails flash messages styled for Zurb Foundation
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    %div{:class => "alert-box radius #{name.to_s == 'notice' ? 'info' : 'alert'}", "data-alert" => ""}
+      = content_tag :div, raw(msg)
+      %a.close{:href => "#"} &times;

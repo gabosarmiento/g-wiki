@@ -1,8 +1,6 @@
 <h3>Collaborators</h3>
 <% if can? :create, Collaboration %>
-<div class="row">
 <%= link_to "Add collaborators", new_wiki_collaboration_path , class: 'button small radius' %>
-</div>
 <% end %>
 <table>
 <% @collaborations.each do |collaboration| %>

@@ -1,8 +1,8 @@
 <% content_for :head do %>
   <%= tag :meta, :name => "stripe-key", :content =>  Rails.configuration.stripe[:publishable_key] %>
 <% end %>
-<h2>Account</h2>
 <div id="stripe_error" class="alert alert-error" style="display:none" ></div>
+<div class="authform">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -34,13 +34,15 @@
   <% end %>
 
     <% unless current_user.provider? %>
+    <fieldset>
+      <p>Leave this field blank if you don't want to change your password.</p>
     <div class="control-group">
       <%= f.label :password, class: 'control-label' %>
       <div class="controls">
         <%= f.password_field :password , :placeholder => "change password" %>
-        <i>(leave blank if you don't want to change it)</i>
       </div>
     </div>
+  </fieldset>
   <% end %>
 
   <div class="control-group">
@@ -54,34 +56,31 @@
 
   <div class="control-group">
     <div class="controls">
-      <%= f.submit "Update", class: 'button small radius' %>
+      <%= f.submit "Update", class: 'button small radius right' %>
     </div>
   </div>  
 <% end %>
-
+</div>
+<div class="authform">
 <h3>Subscription Plan: <%= @user.role.titleize %> </h3>
 <h2>
   <a href="#" data-reveal-id="plan-options" class="button small radius" >Change plan</a>
 </h2>
-
+</div>
+<div class="authform">
 <h3>Card: Using card ending with <%= @user.last_4_digits %></h3>
 <p>
-  
   <a href="#" data-reveal-id="card-data" class="button small radius" type="button">Change card</a>
 </p>
-
-<h3>Cancel my account</h3>
-<div class="horizontal-form">
-  <div class="control-group">
-    <div class="controls">
-      <p>
-        <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'alert button small radius' %>
-      </p>
-    </div>
-  </div>
+</div>
+<div class="authform">
+  <h3>Cancel my account</h3>
+  <p>Unhappy? We'll be sad to see you go.</p>
+    <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'alert button small radius right' %>
 </div>
 <!-- Change your plan -->
 <div id="plan-options"class="reveal-modal" style="display: none" data-reveal>
+  <div class="authform">
   <%= simple_form_for resource, :as => resource_name, :url => update_plan_path, :html => {:method => :put } do |f| %>
     <div class="reveal-modal-header">
       <a class="close-reveal-modal">&#215;</a>
@@ -94,9 +93,11 @@
       <%= f.submit "Change Plan", :class => "button small radius" %>
     </div>
   <% end %>
+  </div>
 </div>
 <!-- Change your credit card info-->
 <div id="card-data"class="reveal-modal" style="display: none" data-reveal >
+  <div class="authform">
   <%= simple_form_for resource, :as => resource_name, :url => update_card_path, :html => {:method => :put, :class => 'form-horizontal card_form' } do |f| %>
     <div class="reveal-modal-header">
       <a class="close-reveal-modal" >&#215;</a>
@@ -122,10 +123,8 @@
     </div>
     <div class="reveal-modal-footer">
       <%= f.submit "Change Credit Card", :class => "button small radius" %>
-  
     </div>
   <% end %>
+  </div>
 </div>
-
-
 

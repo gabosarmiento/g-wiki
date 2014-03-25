@@ -4,56 +4,51 @@
 <div id="stripe_error" class="alert-box error" style="display:none" >
 </div>
 <h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f| %>
-  <h3><%= params[:plan].titleize if params[:plan] %> Subscription Plan</h3>
-  <%= hidden_field_tag 'plan', params[:plan] %>
-  <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <div class="form-inputs">
-    <div class="large-8 small-8 columns">
-    <%= f.input :username, :required => true, :autofocus => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :password, :required => true %>
-    <%= f.input :password_confirmation, :required => true %>
-  </div>
-  <hr>
-  <!-- Credit card data begin -->
-  <% if @user.stripe_token %>
-    <p>Credit card acceptance is pending.</p>
-  <% else %>
-  <div class="button large-8 small-8 columns">
-    <h3>Credit Card Information</h3>
-    <div class="field">
-      <%= label_tag :card_number, "Credit Card Number" %>
-      <span>
-      <%= text_field_tag :card_number, nil, name: nil, placeholder: "**** **** **** ****", style: "width: 18em" %></span
-     
+<div class="authform">
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f| %>
+  
+    <h3><%= params[:plan].titleize if params[:plan] %> Subscription Plan</h3>
+    <%= hidden_field_tag 'plan', params[:plan] %>
+    <%= f.error_notification %>
+    <%= display_base_errors resource %>
+    <div class="form-inputs">
+      
+      <%= f.input :username, :required => true, :autofocus => true %>
+      <%= f.input :email, :required => true %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+      
+      <hr>
+      <!-- Credit card data begin -->
+      <% if @user.stripe_token %>
+        <p>Credit card acceptance is pending.</p>
+      <% else %>
+      
+        <h3>Credit Card Information</h3>
+        <div class="field">
+          <%= label_tag :card_number, "Credit Card Number" %>
+          <span>
+          <%= text_field_tag :card_number, nil, name: nil, placeholder: "**** **** **** ****", style: "width: 18em" %></span>
+        </div>
+        <div class="field">
+          <span><%= label_tag :card_code, "CVC" %></span>
+          <%= text_field_tag :card_code, nil, name: nil, style: "width: 3em", placeholder: "***", size: "3"  %>
+        </div>
+        <div class="field">
+          <%= label_tag :card_month, "Card Expiration" %>
+          <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
+          <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
+        </div>
+      
+      <hr>
+        <div class="field">
+            <%= f.input :coupon, :label => 'Promotional Coupon (if any)' %>
+        </div>
+      <% end %>
+      <%= f.hidden_field :stripe_token %>
+      <!-- Credit card data end -->
+      <%= f.button :submit, "Sign up", class: 'button small radius right' %>
     </div>
-    <div class="field">
-      <span><%= label_tag :card_code, "CVC" %></span>
-      <%= text_field_tag :card_code, nil, name: nil, style: "width: 3em", placeholder: "***", size: "3"  %>
-    </div>
-
-    <div class="field">
-      <%= label_tag :card_month, "Card Expiration" %>
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}%>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}%>
-    </div>
-  </div>
-  </div>
-  <hr>
-  <div class="profile large-12 small-12 columns">
-    <div class="field">
-        <%= f.input :coupon, :label => 'Promotional Coupon (if any)' %>
-    </div>
-    </div>
-  <%= f.hidden_field :stripe_token %>
   <% end %>
-  <!-- Credit card data end -->
-  <div class="profile large-12 small-12 columns">
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: 'button small radius' %>
-  </div>
 </div>
-<% end %>
-
+ 

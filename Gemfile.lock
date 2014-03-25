@@ -185,6 +185,7 @@ GEM
       i18n
       require_all
       ruby-progressbar
+    rails_layout (1.0.13)
     railties (3.2.16)
       actionpack (= 3.2.16)
       activesupport (= 3.2.16)
@@ -259,6 +260,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    turbolinks (2.2.1)
+      coffee-rails
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -295,6 +298,7 @@ DEPENDENCIES
   public_activity
   rails (= 3.2.16)
   rails_best_practices
+  rails_layout
   redcarpet
   rspec-rails
   sass-rails (~> 3.2.3)
@@ -303,5 +307,6 @@ DEPENDENCIES
   stripe
   stripe_event
   tire
+  turbolinks
   uglifier (>= 1.0.3)
   unf

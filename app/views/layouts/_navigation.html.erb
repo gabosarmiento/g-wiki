@@ -1,0 +1,17 @@
+<%# navigation styled for Zurb Foundation 5 %>
+<div class="contain-to-grid sticky" data-options="sticky_on: large">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name"><%= link_to 'G-Wiki SaaS Project', root_path %></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <div class="top-bar-section">
+      <ul class="left">
+        <%= render 'layouts/navigation_search' %>
+      </ul>
+      <ul class="right">
+        <%= render 'layouts/navigation_links' %>
+      </ul>
+    </div>
+  </nav>
+</div>

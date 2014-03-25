@@ -9,13 +9,12 @@
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= content_for?(:title) ? yield(:title) : "GWIKI" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails Wiki Membership Saas" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Wiki Subscription SaaS on Rails" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
-
-    <%= stylesheet_link_tag "application" %>
     <%= stylesheet_link_tag "responsive-tables" %>
     <%= javascript_include_tag "modernizr" %>
     <%= javascript_include_tag "responsive-tables" %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>  
 
@@ -26,21 +25,21 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
-
-  <div class="contain-to-grid sticky" data-options="sticky_on: large">
-    <%= render 'layouts/topbar' %>
-  </div>
-  <div class="container">
-    
+  <header>
+      <%= render 'layouts/navigation' %>
+  </header>
+  <div class="container"> 
+  <main role="main" class="large-12 small-12 columns">
     <div class="row">
-      <%= render 'layouts/notifications' %>
-      <div class="small-3 columns">
-      <%= render 'layouts/sidebar' %>
+      <%= render 'layouts/messages' %>
+      <div class="large-3 small-3 columns">
+        <%= render 'layouts/sidebar' %>
       </div>
-      <div class="small-9 columns">
-          <%= yield %>   
+      <div class="large-9 small-9 columns">
+        <%= yield %>   
       </div>
     </div>
+  </main>
   </div>
    <%= javascript_include_tag "application" %>
   </body>

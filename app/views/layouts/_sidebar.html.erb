@@ -1,23 +1,21 @@
 <ul class="side-nav">
-    <li><%= image_tag "/assets/logo-wiki.jpg" %></li>
+    <li><%= image_tag "/assets/logo-wiki.png" %></li>
     <li><%= link_to "  Create Wiki", new_wiki_path, class: "button small radius fi-cloud" %></li>
     <% if current_user %>
     <li><%= link_to "My Wikis", my_wikis_path %></li>
     <% end %>
     <li><%= link_to "Explore wikis archive", wikis_path %></li>
-    <li><%= link_to "About", about_path %></li>
-    <li><%= link_to "Support", support_path %></li>
     
     <% if current_user %>
     <li>
         <span data-tooltip data-options="disable_for_touch:true" class="tip-left radius" title="Account Settings">
-        <%= link_to user_path(current_user), class: 'secondary small button radius' do%> 
-        <i class="fi-widget large"></i>
+        <%= link_to user_path(current_user), class: 'button radius' do%> 
+        <i class="fi-widget"></i>
         <% end %>
         </span>
         <span data-tooltip data-options="disable_for_touch:true" class="tip-right radius " title="logout <%=current_user.email %>">
-        <%= link_to destroy_user_session_path, method: :delete, class: 'secondary small button radius' do%> 
-        <i class="fi-power large"></i>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'button radius' do%> 
+        <i class="fi-power"></i>
         <% end %>
         </span>
     <% end %>

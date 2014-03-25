@@ -40,7 +40,7 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+  $body-bg: #eee;
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -1127,9 +1127,7 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
- $topbar-bg-color: #008cba;
 // $topbar-bg: $topbar-bg-color;
-
 // Height and margin
 // $topbar-height: 45px;
 // $topbar-margin-bottom: 0;
@@ -1201,9 +1199,7 @@
 // $include-html-visibility-classes: $include-html-classes;
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
-.img-circle {
-  border-radius: 50%;
-}
+
 
 @import 'foundation';
 

@@ -1,0 +1,11 @@
+<% if current_user %>
+        <%= form_tag wikis_path, method: :get do %>
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-8 small-9 columns small-offset-6">
+                <%= search_field_tag :query, params[:query], size: 50, placeholder: 'Search wikis and content', style: "border-radius: 1em;" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      <% end %>

@@ -11,6 +11,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'rails_layout'
   gem 'rails_best_practices'
 end
 
@@ -29,6 +30,8 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
+
+gem 'turbolinks'
 
 gem 'brakeman'
 
