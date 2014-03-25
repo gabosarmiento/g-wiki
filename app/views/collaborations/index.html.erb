@@ -1,5 +1,5 @@
 <h3>Collaborators</h3>
-<% if can? :read, @wiki %>
+<% if can? :update, @wiki %>
 <%= link_to "Add collaborators", new_wiki_collaboration_path , class: 'button small radius' %>
 <% end %>
 <table>
