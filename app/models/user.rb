@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar, :provider, :uid, :stripe_token, :coupon
   attr_accessor :stripe_token, :coupon 
 
-  #before_save :update_stripe #comment to seed db
+  before_save :update_stripe #comment to seed db
 
   before_destroy :cancel_subscription
   has_many :wikis, dependent: :destroy
