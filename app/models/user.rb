@@ -119,6 +119,7 @@ class User < ActiveRecord::Base
     self.wikis.where(:public => false).count
   end
 
+  
   # User with a free plan can create 1 private wiki, 
   # with a basic plan can create 20 wikis,
   # with a pro plan can create unlimited private wikis

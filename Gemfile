@@ -31,7 +31,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 end
 
-gem 'turbolinks'
+#gem 'turbolinks'
 
 gem 'brakeman'
 

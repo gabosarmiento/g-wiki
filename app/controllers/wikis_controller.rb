@@ -46,7 +46,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize! :update, @wiki, message: "You need to be signed up to do that."
+    authorize! :update, @wiki, message: "You need to own the wiki to update it"
     if @wiki.update_attributes(params[:wiki])
       @wiki.create_activity :update, owner: current_user
       #@wiki.update_attribute(:user_id, current_user.id ) # an User could own someone else's wiki by modifying it

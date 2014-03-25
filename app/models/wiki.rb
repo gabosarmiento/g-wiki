@@ -2,14 +2,14 @@ class Wiki < ActiveRecord::Base
   has_paper_trail
   acts_as_taggable
   include PublicActivity::Common
-  #scope :collaboration_instance, lambda {|w_id, u_id| where("collaborations.wiki_id = ? && collaborations.user_id = ?", w_id, u_id)}
-  # tracked owner: ->(controller, model) { controller && controller.current_user }
+  
   attr_accessible :wikiname, :description, :body, :user_id, :public, :tag_list
   belongs_to :user
   has_many :collaborations, dependent: :destroy 
   has_many :users, :through => :collaborations
   scope :visible_to, lambda { |user| user ? scoped : where(public: true) } 
-
+  scope :hidden_to, lambda  { |user| where(public: false) } 
+  
   #FriendlyID for nice looking urls
   extend FriendlyId
   friendly_id :wikiname, use: [:slugged, :history]
@@ -17,8 +17,19 @@ class Wiki < ActiveRecord::Base
   #Tire for Elastic Search
   include Tire::Model::Search
   include Tire::Model::Callbacks 
+  
+  #Checks if an user is a Collaborator for a wiki
+  def is_collaborator?(user)
+    self.collaborations.each do |c|
+     if c.user_id == user.id
+       return true
+     elsif c.user_id != user.id
+       return false 
+     end
+    end
+  end  
 
-  # def self.search(params)
+    # def self.search(params)
   # tire.search(load: true) do
   #   query { string params[:query]} if params[:query].present?
   #   end

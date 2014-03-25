@@ -2,5 +2,14 @@ class Collaboration < ActiveRecord::Base
   attr_accessible :user_id, :wiki_id
   belongs_to :user
   belongs_to :wiki 
-  scope :collaboration_instance, lambda {|w_id, u_id| where("collaborations.wiki_id = ? && collaborations.user_id = ?", w_id, u_id)}
+  scope :something, lambda  { |wiki| where(public: false) } 
+
+  def is_mine?(user)
+    if self.user_id == user.id
+      return true
+    else
+      return false
+    end
+  end 
+
 end

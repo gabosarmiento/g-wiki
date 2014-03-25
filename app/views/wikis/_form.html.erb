@@ -67,7 +67,7 @@
     </div>
   </div>
 </div>
-
+<% if @wiki.wikiname == nil  or  @wiki.user_id == current_user.id %>
 
   <div class="row"> 
     <div class="large-9 small-9">
@@ -82,7 +82,7 @@
       </div>
     </div>
 
-   <div class="row"> 
+  <div class="row"> 
     <div class="large-9 small-9">
         <div class="row control-group">
             <div class="small-3 columns">
@@ -107,6 +107,7 @@
             </div>
         </div>
       </div>
+  <% end %>
   <div class="row"> 
 
   <%= f.submit "Save" , id:"btnSave", class: 'button radius small-offset-2' %>

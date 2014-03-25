@@ -1,6 +1,9 @@
 // import the CSS framework
 @import "foundation";
 
+body {
+  background: #eee;
+}
 // override for the 'Home' navigation link
 .contain-to-grid {
   background: #008cba;

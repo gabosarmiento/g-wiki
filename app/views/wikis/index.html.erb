@@ -1,7 +1,7 @@
 <h1>All Wikis</h1>
 <h4>Hot Tags</h4>
     <span class="box" id="tag_cloud">
-  <% tag_cloud @wikis.tag_counts, %w{s m l} do |tag, css_class| %>
+  <% tag_cloud Wiki.tag_counts_on(:tags, :limit => 40, :order => "count desc"), %w{s m l} do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
 </span>

@@ -6,21 +6,25 @@ class Ability
 
     if user.role? :free
         can :read, Wiki, :public => false, :user_id => user.id
-        can :read, Wiki, :public => false, :collaborations => {:user_id => user.id}
+        can :read, Wiki,  Wiki.hidden_to(user) do |wiki|
+            wiki.is_collaborator?(user)
+        end
         can :create, Wiki 
         can :destroy, Wiki, :user_id => user.id
         can :update, Wiki, :public => true 
         can :update, Wiki, :public => false, :user_id => user.id
+        can :update, Wiki, Wiki.hidden_to(user) do |wiki|
+            wiki.is_collaborator?(user)
+        end
         can :manage, User, :user_id => user.id 
-        can :read, Collaboration, :collaborations => { :user_id => user.id }
-        # cannot :manage, Collaboration
+        cannot :manage, Collaboration
     end
 
     if user.role? :basic
-        can :read, Collaboration, :collaborations => { :user_id => user.id }
-        can :create, Collaboration, :collaborations => { :user_id => user.id } 
-        can :destroy, Collaboration, :collaborations => { :user_id => user.id } 
-        # can :manage, Wiki, :collaborations => { :user_id => user.id } 
+        # can :create, Collaboration, Collaboration.something(collaboration) do |a|
+        #     a.is_mine?(user)
+        # end
+        can :read, Collaboration, :collaborations => { :user_id => user.id } 
         can :view, :basic
     end
 
