@@ -14,7 +14,9 @@
   <td><%= link_to wiki.wikiname, wiki %></td>
   <td><%= wiki.description %></td>
   <td><%= time_ago_in_words(wiki.updated_at) %></td>
+  <% if wiki.tag_list %>
   <td><%= raw wiki.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>
+  <% end %>
 </tr>
 <% end %>
 <% end %>

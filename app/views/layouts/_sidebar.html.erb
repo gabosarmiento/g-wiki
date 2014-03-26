@@ -2,7 +2,12 @@
     <li><%= image_tag "/assets/logo-wiki.png", style: "display:block;margin:auto;" %></li>
     <li><%= link_to "  Create Wiki", new_wiki_path, class: "button radius fi-cloud", style: "display:block;margin:auto;" %></li>
     <% if current_user %>
-    <li><%= link_to "Dashboard", "#" %></li>
+    <% if current_user.role == 'basic' %>
+    <li><%= link_to "Dashboard", content_basic_path %></li>
+    <% end %>
+    <% if current_user.role == 'pro' %>
+    <li><%= link_to "Dashboard", content_pro_path %></li>
+    <% end %>
     <li><%= link_to "My Wikis", my_wikis_path %></li>
     <% end %>
     <li><%= link_to "Explore wikis archive", wikis_path %></li>

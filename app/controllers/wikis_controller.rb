@@ -3,7 +3,7 @@ class WikisController < ApplicationController
 
   def index
     if params[:query].present?
-      @wikis = Wiki.search(params[:query], load: true)
+      @wikis = Wiki.visible_to(current_user).search(params[:query])
     elsif params[:tag]
       @wikis = Wiki.visible_to(current_user).tagged_with(params[:tag])
     else
@@ -49,7 +49,6 @@ class WikisController < ApplicationController
     authorize! :update, @wiki, message: "You need to own the wiki to update it"
     if @wiki.update_attributes(params[:wiki])
       @wiki.create_activity :update, owner: current_user
-      #@wiki.update_attribute(:user_id, current_user.id ) # an User could own someone else's wiki by modifying it
       flash[:notice] = "Wiki was updated. #{undo_link}"
       redirect_to @wiki
     else
@@ -64,9 +63,8 @@ class WikisController < ApplicationController
     name = @wiki.wikiname
     authorize! :destroy, @wiki, message: "You need to own the wiki to delete it."
     if @wiki.destroy
-      @wiki.create_activity :destroy, owner: current_user
       flash[:notice] = "\"#{name}\" was deleted successfully. #{undo_link}"
-      redirect_to wikis_path
+      redirect_to my_wikis_path
     else
       flash[:error] = "There was an error deleting the wiki."
       render :show
