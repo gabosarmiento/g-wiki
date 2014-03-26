@@ -23,8 +23,11 @@ GWiki::Application.routes.draw do
   match "versions/:id/revert" => "versions#revert", via: :post, :as => "revert_version"
   match "versions/:id/uncreate" => "versions#uncreate", via: :post, :as => "uncreate_version"
 
+  match 'contact' => 'contact#new', :as => 'support', :via => :get
+  match 'contact' => 'contact#create', :as => 'support', :via => :post
+
   match "about" => 'welcome#about', via: :get
-  match "support" => 'welcome#support', via: :get
+  
   
 
 end
